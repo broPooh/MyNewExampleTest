@@ -27,6 +27,9 @@
 		1B5D32A6288E8C680009E7FC /* BaseUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5D32A5288E8C680009E7FC /* BaseUIView.swift */; };
 		1B5D32A8288E8C8D0009E7FC /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5D32A7288E8C8D0009E7FC /* BaseViewController.swift */; };
 		1B5D32AA288E8CB40009E7FC /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5D32A9288E8CB40009E7FC /* UIViewController+Extension.swift */; };
+		1B5D32AE288E8D2D0009E7FC /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 1B5D32AD288E8D2D0009E7FC /* JGProgressHUD */; };
+		1B5D32B0288E8D650009E7FC /* ImageEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5D32AF288E8D650009E7FC /* ImageEnum.swift */; };
+		1B5D32B2288E8F320009E7FC /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5D32B1288E8F320009E7FC /* SearchViewModel.swift */; };
 		1BB44E76288E5CE20096FA4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB44E75288E5CE20096FA4A /* AppDelegate.swift */; };
 		1BB44E78288E5CE20096FA4A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB44E77288E5CE20096FA4A /* SceneDelegate.swift */; };
 		1BB44E7F288E5CE50096FA4A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BB44E7E288E5CE50096FA4A /* Assets.xcassets */; };
@@ -49,6 +52,8 @@
 		1B5D32A5288E8C680009E7FC /* BaseUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
 		1B5D32A7288E8C8D0009E7FC /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		1B5D32A9288E8CB40009E7FC /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		1B5D32AF288E8D650009E7FC /* ImageEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageEnum.swift; sourceTree = "<group>"; };
+		1B5D32B1288E8F320009E7FC /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		1BB44E72288E5CE20096FA4A /* MyNewExampleTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyNewExampleTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BB44E75288E5CE20096FA4A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BB44E77288E5CE20096FA4A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +68,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B5D3284288E5F500009E7FC /* Alamofire in Frameworks */,
+				1B5D32AE288E8D2D0009E7FC /* JGProgressHUD in Frameworks */,
 				1B5D327C288E5E070009E7FC /* Kingfisher in Frameworks */,
 				1B5D3279288E5DE50009E7FC /* SnapKit in Frameworks */,
 				1B5D3287288E5F7E0009E7FC /* RxAlamofire in Frameworks */,
@@ -127,6 +133,8 @@
 				1B5D3297288E74020009E7FC /* Config.swift */,
 				1B5D329F288E7B4E0009E7FC /* SearchViewController.swift */,
 				1B5D32A3288E8C530009E7FC /* SearchView.swift */,
+				1B5D32B1288E8F320009E7FC /* SearchViewModel.swift */,
+				1B5D32AF288E8D650009E7FC /* ImageEnum.swift */,
 				1B5D32AB288E8CCF0009E7FC /* Base */,
 				1B5D329D288E7A500009E7FC /* AppCoordinator.swift */,
 				1B5D32A1288E7C520009E7FC /* MainCoordinator.swift */,
@@ -164,6 +172,7 @@
 				1B5D327B288E5E070009E7FC /* Kingfisher */,
 				1B5D3283288E5F500009E7FC /* Alamofire */,
 				1B5D3286288E5F7E0009E7FC /* RxAlamofire */,
+				1B5D32AD288E8D2D0009E7FC /* JGProgressHUD */,
 			);
 			productName = MyNewExampleTest;
 			productReference = 1BB44E72288E5CE20096FA4A /* MyNewExampleTest.app */;
@@ -199,6 +208,7 @@
 				1B5D327A288E5E070009E7FC /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				1B5D3282288E5F500009E7FC /* XCRemoteSwiftPackageReference "Alamofire" */,
 				1B5D3285288E5F7E0009E7FC /* XCRemoteSwiftPackageReference "RxAlamofire" */,
+				1B5D32AC288E8D2D0009E7FC /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 			);
 			productRefGroup = 1BB44E73288E5CE20096FA4A /* Products */;
 			projectDirPath = "";
@@ -232,6 +242,7 @@
 				1B5D32A0288E7B4E0009E7FC /* SearchViewController.swift in Sources */,
 				1B5D3290288E62E60009E7FC /* UIImageView+Extension.swift in Sources */,
 				1B5D329A288E795B0009E7FC /* Appearance.swift in Sources */,
+				1B5D32B2288E8F320009E7FC /* SearchViewModel.swift in Sources */,
 				1B5D32A8288E8C8D0009E7FC /* BaseViewController.swift in Sources */,
 				1B5D329C288E7A2C0009E7FC /* Coordiantor.swift in Sources */,
 				1B5D328A288E621A0009E7FC /* ViewModelType.swift in Sources */,
@@ -241,6 +252,7 @@
 				1BB44E76288E5CE20096FA4A /* AppDelegate.swift in Sources */,
 				1B5D3298288E74020009E7FC /* Config.swift in Sources */,
 				1BB44E78288E5CE20096FA4A /* SceneDelegate.swift in Sources */,
+				1B5D32B0288E8D650009E7FC /* ImageEnum.swift in Sources */,
 				1B5D328D288E62B20009E7FC /* Reusable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -491,6 +503,14 @@
 				version = 6.1.2;
 			};
 		};
+		1B5D32AC288E8D2D0009E7FC /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -523,6 +543,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1B5D3285288E5F7E0009E7FC /* XCRemoteSwiftPackageReference "RxAlamofire" */;
 			productName = RxAlamofire;
+		};
+		1B5D32AD288E8D2D0009E7FC /* JGProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1B5D32AC288E8D2D0009E7FC /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
+			productName = JGProgressHUD;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

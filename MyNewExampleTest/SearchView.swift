@@ -5,4 +5,88 @@
 //  Created by bro on 2022/07/25.
 //
 
-import Foundation
+import UIKit
+
+import SnapKit
+import JGProgressHUD
+
+final class SearchView: BaseUIView {
+    
+    let hud = JGProgressHUD()
+    
+    var searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.setImage(UIImage(named: SystemImage.icSearchNonW.rawValue), for: UISearchBar.Icon.search, state: .normal)
+        searchBar.setImage(UIImage(named: SystemImage.icCancel.rawValue), for: .clear, state: .normal)
+        
+        searchBar.searchTextField.textColor = .white
+        searchBar.searchTextField.backgroundColor = .darkGray
+        searchBar.searchTextField.leftView?.tintColor = .lightGray
+        searchBar.searchTextField.rightView?.tintColor = .white
+        searchBar.backgroundImage = UIImage()
+        return searchBar
+    }()
+    
+    var searchTableView: UITableView = {
+        let tableView = UITableView()
+        return tableView
+    }()
+    
+    var noDataLabel: UILabel = {
+        let label = UILabel()
+        label.text = "검색 결과가 없습니다."
+        label.textAlignment = .center
+        label.backgroundColor = .white
+        label.isHidden = true
+        return label
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    override func setupView() {
+        super.setupView()
+        
+        addSubview(searchBar)
+        addSubview(searchTableView)
+        addSubview(noDataLabel)
+    }
+    
+    override func setupConstraints() {
+        super.setupConstraints()
+        
+        searchBar.snp.makeConstraints { make in
+            make.top.equalTo(safeAreaLayoutGuide)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+        }
+                
+        searchTableView.snp.makeConstraints { make in
+            make.top.equalTo(searchBar.snp.bottom)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+
+        noDataLabel.snp.makeConstraints { make in
+            make.top.equalTo(searchBar.snp.bottom)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+        
+    }
+    
+    func showProgress() {
+        hud.show(in: self)
+    }
+    
+    func dissmissProgress() {
+        hud.dismiss()
+    }
+}

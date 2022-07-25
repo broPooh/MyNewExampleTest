@@ -23,7 +23,10 @@ class MainCoordinator: Coordinator, SearchViewControllerDelegate {
     }
     
     func start() {
-        let viewController = SearchViewController()
+        let searchView = SearchView()
+        let searchViewModel = SearchViewModel()
+
+        let viewController = SearchViewController(view: searchView, viewModel: searchViewModel)
         self.navigationController.viewControllers = [viewController]
     }
     
