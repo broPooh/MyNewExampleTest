@@ -7,6 +7,8 @@
 
 import UIKit
 
+import RxCocoa
+import RxSwift
 
 protocol SearchViewControllerDelegate {
     func favoriteButtonDidTap()
@@ -17,6 +19,8 @@ class SearchViewController: BaseViewController {
     
     private var searchView: SearchView
     private var viewModel: SearchViewModel
+    
+    var disposeBag = DisposeBag()
     
     init(view: SearchView, viewModel: SearchViewModel) {
         self.searchView = view
@@ -35,12 +39,15 @@ class SearchViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
                         
+        bindInput()
     }
         
     override func configure() {
         super.configure()
         
         navigationConfig()
+        searchBarConfig()
+        tableViewConfig()
     }
     
     private func navigationConfig() {
@@ -50,15 +57,24 @@ class SearchViewController: BaseViewController {
     }
     
     private func searchBarConfig() {
-        
+        searchView.searchBar.delegate = self
     }
     
     private func tableViewConfig() {
-        
+        searchView.searchTableView.delegate = self
+        searchView.searchTableView.dataSource = self
     }
     
     private func bindInput() {
+        let input = SearchViewModel.Input(searchText: searchView.searchBar.rx.text.orEmpty, searchBarReturn: searchView.searchBar.rx.searchButtonClicked)
+        let output = viewModel.transform(input: input)
         
+        output.searchInputText
+            .debounce(.seconds(1))
+            .drive(onNext: { text in
+                print(text)
+            })
+            .disposed(by: disposeBag)
     }
     
     private func bindOutput() {
@@ -68,5 +84,35 @@ class SearchViewController: BaseViewController {
     @objc func favoriteButtonDidTap() {
         delegate?.favoriteButtonDidTap()
    }
+    
+}
+
+// MARK: - TableViewDelegate
+extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        viewModel.movieList.value.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let movie = viewModel.movieList.value[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.reuseIdentifier, for: indexPath) as! SearchTableViewCell
+        
+        cell.favoriteButtonAction = {
+            print("버튼 클릭")
+        }
+        
+        cell.configureData(movie: movie)
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
+    }
+    
+}
+
+// MARK: - SearchBarDelegate
+extension SearchViewController: UISearchBarDelegate {
     
 }

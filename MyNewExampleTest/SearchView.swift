@@ -20,7 +20,9 @@ final class SearchView: BaseUIView {
         searchBar.setImage(UIImage(named: SystemImage.icCancel.rawValue), for: .clear, state: .normal)
         
         searchBar.searchTextField.textColor = .white
-        searchBar.searchTextField.backgroundColor = .darkGray
+        searchBar.layer.borderWidth = 1
+        searchBar.layer.borderColor = UIColor.lightGray.cgColor
+        //searchBar.searchTextField.backgroundColor = .darkGray
         searchBar.searchTextField.leftView?.tintColor = .lightGray
         searchBar.searchTextField.rightView?.tintColor = .white
         searchBar.backgroundImage = UIImage()
@@ -29,6 +31,8 @@ final class SearchView: BaseUIView {
     
     var searchTableView: UITableView = {
         let tableView = UITableView()
+        tableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.reuseIdentifier)
+        tableView.separatorStyle = .none
         return tableView
     }()
     

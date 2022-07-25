@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UICollectionViewCell: Reusable {
+extension UITableViewCell: Reusable {
    static var reuseIdentifier: String {
         return String(describing: self)
     }
