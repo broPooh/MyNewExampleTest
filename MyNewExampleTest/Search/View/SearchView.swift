@@ -19,10 +19,11 @@ final class SearchView: BaseUIView {
         searchBar.setImage(UIImage(named: SystemImage.icSearchNonW.rawValue), for: UISearchBar.Icon.search, state: .normal)
         searchBar.setImage(UIImage(named: SystemImage.icCancel.rawValue), for: .clear, state: .normal)
         
-        searchBar.searchTextField.textColor = .white
-        searchBar.layer.borderWidth = 1
-        searchBar.layer.borderColor = UIColor.lightGray.cgColor
-        //searchBar.searchTextField.backgroundColor = .darkGray
+        searchBar.searchTextField.textColor = .black
+        searchBar.searchTextField.backgroundColor = .clear
+        searchBar.searchTextField.layer.borderWidth = 1
+        searchBar.searchTextField.layer.cornerRadius = 4
+        searchBar.searchTextField.layer.borderColor = UIColor.lightGray.cgColor
         searchBar.searchTextField.leftView?.tintColor = .lightGray
         searchBar.searchTextField.rightView?.tintColor = .white
         searchBar.backgroundImage = UIImage()

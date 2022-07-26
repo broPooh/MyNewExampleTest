@@ -129,6 +129,42 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
+		1B5D32BE288F6B200009E7FC /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				1B5D32BF288F6B2F0009E7FC /* View */,
+				1B5D32B1288E8F320009E7FC /* SearchViewModel.swift */,
+				1B5D329F288E7B4E0009E7FC /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		1B5D32BF288F6B2F0009E7FC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1B5D32A3288E8C530009E7FC /* SearchView.swift */,
+				1B5D32B5288F51730009E7FC /* SearchTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1B5D32C0288F6B510009E7FC /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				1B5D32B3288EAD430009E7FC /* Model.swift */,
+				1B5D32BA288F695F0009E7FC /* EndPoint.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		1B5D32C1288F6B620009E7FC /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				1B5D3297288E74020009E7FC /* Config.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		1BB44E69288E5CE20096FA4A = {
 			isa = PBXGroup;
 			children = (
@@ -150,13 +186,9 @@
 			children = (
 				1BB44E75288E5CE20096FA4A /* AppDelegate.swift */,
 				1BB44E77288E5CE20096FA4A /* SceneDelegate.swift */,
-				1B5D3297288E74020009E7FC /* Config.swift */,
-				1B5D32B3288EAD430009E7FC /* Model.swift */,
-				1B5D329F288E7B4E0009E7FC /* SearchViewController.swift */,
-				1B5D32A3288E8C530009E7FC /* SearchView.swift */,
-				1B5D32B1288E8F320009E7FC /* SearchViewModel.swift */,
-				1B5D32B5288F51730009E7FC /* SearchTableViewCell.swift */,
-				1B5D32BA288F695F0009E7FC /* EndPoint.swift */,
+				1B5D32C1288F6B620009E7FC /* Common */,
+				1B5D32C0288F6B510009E7FC /* Network */,
+				1B5D32BE288F6B200009E7FC /* Search */,
 				1B5D32B7288F68DF0009E7FC /* Enums */,
 				1B5D32AB288E8CCF0009E7FC /* Base */,
 				1B5D329D288E7A500009E7FC /* AppCoordinator.swift */,

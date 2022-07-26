@@ -51,7 +51,16 @@ class SearchViewController: BaseViewController {
     }
     
     private func navigationConfig() {
-        navigationItem.title = "네이버 영화 검색"
+        //navigationItem.title = "네이버 영화 검색"
+        
+        // 타이틀 지정
+        let titleLabel = UILabel()
+        titleLabel.textColor = UIColor.black
+        titleLabel.text = "네이버 영화 검색"
+        titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: titleLabel)
+        
+        
         let favoriteBarButton = UIBarButtonItem(title: "즐겨찾기", style: .plain, target: self, action: #selector(favoriteButtonDidTap))
         self.navigationItem.rightBarButtonItem = favoriteBarButton
     }
@@ -73,6 +82,12 @@ class SearchViewController: BaseViewController {
             .debounce(.seconds(1))
             .drive(onNext: { text in
                 print(text)
+            })
+            .disposed(by: disposeBag)
+        
+        output.isLoading
+            .drive(onNext: { bool in
+                bool ? self.searchView.showProgress() : self.searchView.dissmissProgress()
             })
             .disposed(by: disposeBag)
     }
