@@ -29,7 +29,9 @@ class AppCoordinator: Coordinator, MainCoordinatorDelegate {
     }
     
     private func showFavoriteViewController() {
-        
+        let coordinator = FavoriteCoordinator(navigationController: navigationController)
+        coordinator.start()
+        self.childCoordinators.append(coordinator)
     }
     
     private func showDetailViewController() {
