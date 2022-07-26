@@ -9,6 +9,7 @@ import UIKit
 
 import RxCocoa
 import RxSwift
+import SnapKit
 
 protocol SearchViewControllerDelegate {
     func favoriteButtonDidTap()
@@ -61,8 +62,26 @@ class SearchViewController: BaseViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: titleLabel)
         
         
-        let favoriteBarButton = UIBarButtonItem(title: "즐겨찾기", style: .plain, target: self, action: #selector(favoriteButtonDidTap))
-        self.navigationItem.rightBarButtonItem = favoriteBarButton
+        
+        let customBarButton = createCustomBarButton()
+        customBarButton.addTarget(self, action: #selector(favoriteButtonDidTap), for: .touchUpInside)
+        let favoriteButton = UIBarButtonItem(customView: customBarButton)
+        self.navigationItem.rightBarButtonItem = favoriteButton
+    }
+    
+    private func createCustomBarButton() -> UIButton {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        button.tintColor = .yellow
+        button.setTitle("즐겨찾기", for: .normal)
+        //button.titleLabel?.textColor = .black
+        button.titleLabel?.font = .systemFont(ofSize: 12)
+        button.setTitleColor(.black, for: .normal)
+        button.frame = CGRect(x: 0, y: 0, width: 75, height: 30)
+        button.layer.cornerRadius = 4
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.lightGray.cgColor
+        return button
     }
     
     private func searchBarConfig() {
@@ -117,6 +136,7 @@ class SearchViewController: BaseViewController {
     
     
     @objc func favoriteButtonDidTap() {
+        print(#function)
         delegate?.favoriteButtonDidTap()
     }
     
@@ -132,7 +152,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         let movie = viewModel.movieResult.value.items?[indexPath.row] ?? Movie(subtitle: "", image: "", title: "", actor: "", userRating: "", pubDate: "", director: "", link: "")
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.reuseIdentifier, for: indexPath) as! SearchTableViewCell
         
-        cell.favoriteButtonAction = { [unowned self] in
+        cell.favoriteButtonAction = {
             print("버튼 클릭")
         }
         

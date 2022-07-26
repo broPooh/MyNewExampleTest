@@ -42,10 +42,7 @@ final class SearchViewModel: ViewModelType {
     }
     
     struct Output {
-        //검색결과가 nil인지 체크해서 lable 활성화
         //검색결과에 따른 화면 갱신
-        //let fetchData: BehaviorSubject<String>
-        //var movieListObservable: BehaviorRelay<MovieResult>
         let searchInputText: Driver<String>
         let searchInputReturn: Driver<String>
         let isLoading: Driver<Bool>
@@ -57,6 +54,20 @@ final class SearchViewModel: ViewModelType {
         input.searchText
             .bind(to: searchInputText)
             .disposed(by: disposeBag)
+        
+        input.searchBarReturn
+            .map { self.searchInputText.value }
+            .do(onNext: { _ in
+                self.isLoading.accept(true)
+            })
+            .flatMap { text in APIManager.shared.searchMovie(query: text, start: 1) }
+            .do(onNext: { _ in
+                self.isLoading.accept(false)
+            })
+            .asObservable()
+            
+            
+            
         
         return Output(searchInputText: searchInputText.asDriver(),
                       searchInputReturn: searchInputReturn.asDriver(),
