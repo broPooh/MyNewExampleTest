@@ -82,8 +82,10 @@ class SearchViewController: BaseViewController {
         output.searchInputText
             .debounce(.seconds(1))
             .do(onNext: { text in
-                self.viewModel.isLoading.accept(true)
-                self.viewModel.searchMovie(query: text, start: 1)
+                if text != "" {
+                    self.viewModel.isLoading.accept(true)
+                    self.viewModel.searchMovie(query: text, start: 1)
+                }
             })
             .do(onNext: { _ in
                 self.viewModel.isLoading.accept(false)
@@ -92,6 +94,11 @@ class SearchViewController: BaseViewController {
                 self.searchView.searchTableView.reloadData()
             })
             .disposed(by: disposeBag)
+                
+        input.searchBarReturn
+                .bind {
+                    self.viewModel.searchMovie(query: self.searchView.searchBar.text!, start: 1)
+                }.disposed(by: disposeBag)
         
         output.movieResult
                 .asDriver()
@@ -125,7 +132,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         let movie = viewModel.movieResult.value.items?[indexPath.row] ?? Movie(subtitle: "", image: "", title: "", actor: "", userRating: "", pubDate: "", director: "", link: "")
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.reuseIdentifier, for: indexPath) as! SearchTableViewCell
         
-        cell.favoriteButtonAction = {
+        cell.favoriteButtonAction = { [unowned self] in
             print("버튼 클릭")
         }
         

@@ -57,6 +57,7 @@ final class SearchTableViewCell: UITableViewCell, ViewRepresentable {
         setupView()
         setupConstraints()
         buttonConfig()
+        self.favoriteButton.addTarget(self, action: #selector(favoriteButtonClicked), for: .touchUpInside)
         selectionStyle = .none
     }
     
@@ -66,12 +67,12 @@ final class SearchTableViewCell: UITableViewCell, ViewRepresentable {
     
     
     func setupView() {
-        addSubview(posterImageView)
-        addSubview(titleLable)
-        addSubview(directorLable)
-        addSubview(castLable)
-        addSubview(rateLable)
-        addSubview(favoriteButton)
+        contentView.addSubview(posterImageView)
+        contentView.addSubview(titleLable)
+        contentView.addSubview(directorLable)
+        contentView.addSubview(castLable)
+        contentView.addSubview(rateLable)
+        contentView.addSubview(favoriteButton)
     }
     
     func setupConstraints() {
@@ -129,7 +130,6 @@ final class SearchTableViewCell: UITableViewCell, ViewRepresentable {
     }
     
     @objc func favoriteButtonClicked() {
-        print("버튼클릭2")
         favoriteButtonAction?()
     }
     
