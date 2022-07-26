@@ -32,6 +32,9 @@
 		1B5D32B2288E8F320009E7FC /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5D32B1288E8F320009E7FC /* SearchViewModel.swift */; };
 		1B5D32B4288EAD430009E7FC /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5D32B3288EAD430009E7FC /* Model.swift */; };
 		1B5D32B6288F51730009E7FC /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5D32B5288F51730009E7FC /* SearchTableViewCell.swift */; };
+		1B5D32B9288F68F20009E7FC /* APIEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5D32B8288F68F20009E7FC /* APIEnum.swift */; };
+		1B5D32BB288F695F0009E7FC /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5D32BA288F695F0009E7FC /* EndPoint.swift */; };
+		1B5D32BD288F69A80009E7FC /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5D32BC288F69A80009E7FC /* URL+Extension.swift */; };
 		1BB44E76288E5CE20096FA4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB44E75288E5CE20096FA4A /* AppDelegate.swift */; };
 		1BB44E78288E5CE20096FA4A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB44E77288E5CE20096FA4A /* SceneDelegate.swift */; };
 		1BB44E7F288E5CE50096FA4A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BB44E7E288E5CE50096FA4A /* Assets.xcassets */; };
@@ -58,6 +61,9 @@
 		1B5D32B1288E8F320009E7FC /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		1B5D32B3288EAD430009E7FC /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		1B5D32B5288F51730009E7FC /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		1B5D32B8288F68F20009E7FC /* APIEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnum.swift; sourceTree = "<group>"; };
+		1B5D32BA288F695F0009E7FC /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
+		1B5D32BC288F69A80009E7FC /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		1BB44E72288E5CE20096FA4A /* MyNewExampleTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyNewExampleTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BB44E75288E5CE20096FA4A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BB44E77288E5CE20096FA4A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +106,7 @@
 				1B5D328F288E62E60009E7FC /* UIImageView+Extension.swift */,
 				1B5D3291288E631B0009E7FC /* UITableViewCell+Extension.swift */,
 				1B5D32A9288E8CB40009E7FC /* UIViewController+Extension.swift */,
+				1B5D32BC288F69A80009E7FC /* URL+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -111,6 +118,15 @@
 				1B5D32A7288E8C8D0009E7FC /* BaseViewController.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		1B5D32B7288F68DF0009E7FC /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				1B5D32AF288E8D650009E7FC /* ImageEnum.swift */,
+				1B5D32B8288F68F20009E7FC /* APIEnum.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 		1BB44E69288E5CE20096FA4A = {
@@ -140,7 +156,8 @@
 				1B5D32A3288E8C530009E7FC /* SearchView.swift */,
 				1B5D32B1288E8F320009E7FC /* SearchViewModel.swift */,
 				1B5D32B5288F51730009E7FC /* SearchTableViewCell.swift */,
-				1B5D32AF288E8D650009E7FC /* ImageEnum.swift */,
+				1B5D32BA288F695F0009E7FC /* EndPoint.swift */,
+				1B5D32B7288F68DF0009E7FC /* Enums */,
 				1B5D32AB288E8CCF0009E7FC /* Base */,
 				1B5D329D288E7A500009E7FC /* AppCoordinator.swift */,
 				1B5D32A1288E7C520009E7FC /* MainCoordinator.swift */,
@@ -246,6 +263,7 @@
 				1B5D329E288E7A500009E7FC /* AppCoordinator.swift in Sources */,
 				1B5D32A2288E7C520009E7FC /* MainCoordinator.swift in Sources */,
 				1B5D32A0288E7B4E0009E7FC /* SearchViewController.swift in Sources */,
+				1B5D32BB288F695F0009E7FC /* EndPoint.swift in Sources */,
 				1B5D3290288E62E60009E7FC /* UIImageView+Extension.swift in Sources */,
 				1B5D329A288E795B0009E7FC /* Appearance.swift in Sources */,
 				1B5D32B2288E8F320009E7FC /* SearchViewModel.swift in Sources */,
@@ -253,6 +271,7 @@
 				1B5D329C288E7A2C0009E7FC /* Coordiantor.swift in Sources */,
 				1B5D32B6288F51730009E7FC /* SearchTableViewCell.swift in Sources */,
 				1B5D328A288E621A0009E7FC /* ViewModelType.swift in Sources */,
+				1B5D32B9288F68F20009E7FC /* APIEnum.swift in Sources */,
 				1B5D3292288E631B0009E7FC /* UITableViewCell+Extension.swift in Sources */,
 				1B5D32A4288E8C530009E7FC /* SearchView.swift in Sources */,
 				1B5D32A6288E8C680009E7FC /* BaseUIView.swift in Sources */,
@@ -261,6 +280,7 @@
 				1BB44E78288E5CE20096FA4A /* SceneDelegate.swift in Sources */,
 				1B5D32B4288EAD430009E7FC /* Model.swift in Sources */,
 				1B5D32B0288E8D650009E7FC /* ImageEnum.swift in Sources */,
+				1B5D32BD288F69A80009E7FC /* URL+Extension.swift in Sources */,
 				1B5D328D288E62B20009E7FC /* Reusable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
