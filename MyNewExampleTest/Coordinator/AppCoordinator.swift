@@ -8,8 +8,7 @@
 import UIKit
 
 class AppCoordinator: Coordinator, MainCoordinatorDelegate {
-    
-    
+        
     var navigationController: UINavigationController
     
     var childCoordinators: [Coordinator] = []
@@ -33,10 +32,20 @@ class AppCoordinator: Coordinator, MainCoordinatorDelegate {
         
     }
     
+    private func showDetailViewController() {
+        let coordinator = DetailCoordinator(navigationController: navigationController)
+        coordinator.start()
+        self.childCoordinators.append(coordinator)
+    }
+    
     func favoriteDidTap(_ coordinator: MainCoordinator) {
         self.childCoordinators = self.childCoordinators.filter { $0 !== coordinator }
         self.showFavoriteViewController()
     }
     
+    func searchCellDidTap(_ coordinator: MainCoordinator) {
+        self.childCoordinators = self.childCoordinators.filter { $0 !== coordinator }
+        self.showDetailViewController()
+    }
     
 }

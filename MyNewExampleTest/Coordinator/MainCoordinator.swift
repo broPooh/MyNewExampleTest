@@ -9,6 +9,7 @@ import UIKit
 
 protocol MainCoordinatorDelegate {
     func favoriteDidTap(_ coordinator: MainCoordinator)
+    func searchCellDidTap(_ coordinator: MainCoordinator)
 }
 
 class MainCoordinator: Coordinator, SearchViewControllerDelegate {
@@ -32,6 +33,20 @@ class MainCoordinator: Coordinator, SearchViewControllerDelegate {
     
     func favoriteButtonDidTap() {
         delegate?.favoriteDidTap(self)
+    }
+    
+    func searchCellDidTap() {
+        delegate?.searchCellDidTap(self)
+    }
+    
+    
+    func childDidFinish(_ child: Coordinator?) {
+        for (index, coordinator) in childCoordinators.enumerated() {
+            if coordinator === child {
+                childCoordinators.remove(at: index)
+                break
+            }
+        }
     }
     
 }

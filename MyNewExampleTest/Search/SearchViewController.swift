@@ -13,6 +13,7 @@ import SnapKit
 
 protocol SearchViewControllerDelegate {
     func favoriteButtonDidTap()
+    func searchCellDidTap()
 }
 
 class SearchViewController: BaseViewController {
