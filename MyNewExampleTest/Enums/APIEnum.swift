@@ -8,18 +8,18 @@
 import Foundation
 
 enum NetworkHeader: String {
-    case accept = "Accept"
-    case authorization = "Authorization"
+    case clientId = "X-Naver-Client-Id"
+    case clientSecret = "X-Naver-Client-Secret"
 }
 
 enum NetworkHeaderField {
-    case gitAuthorization
-    case accept
+    case clientId
+    case clientSecret
     
     var field: String {
         switch self {
-        case .gitAuthorization: return "token \(Config.clientId)"
-        case .accept: return "application/vnd.github.v3+json"
+        case .clientId: return Config.clientId
+        case .clientSecret: return Config.clientSecret
         }
     }
 }

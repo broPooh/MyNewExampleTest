@@ -35,13 +35,13 @@ class SearchViewController: BaseViewController {
     override func loadView() {
         self.view = searchView
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-                        
+        
         bindInput()
     }
-        
+    
     override func configure() {
         super.configure()
         
@@ -76,14 +76,30 @@ class SearchViewController: BaseViewController {
     
     private func bindInput() {
         let input = SearchViewModel.Input(searchText: searchView.searchBar.rx.text.orEmpty, searchBarReturn: searchView.searchBar.rx.searchButtonClicked)
+        
         let output = viewModel.transform(input: input)
         
         output.searchInputText
             .debounce(.seconds(1))
+            .do(onNext: { text in
+                self.viewModel.isLoading.accept(true)
+                self.viewModel.searchMovie(query: text, start: 1)
+            })
+            .do(onNext: { _ in
+                self.viewModel.isLoading.accept(false)
+            })
             .drive(onNext: { text in
-                print(text)
+                self.searchView.searchTableView.reloadData()
             })
             .disposed(by: disposeBag)
+        
+        output.movieResult
+                .asDriver()
+                .drive(onNext: { movieResult in
+                    print(movieResult)
+                    self.searchView.searchTableView.reloadData()
+                })
+                .disposed(by: disposeBag)
         
         output.isLoading
             .drive(onNext: { bool in
@@ -92,24 +108,21 @@ class SearchViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
-    private func bindOutput() {
-        
-    }
-        
+    
     @objc func favoriteButtonDidTap() {
         delegate?.favoriteButtonDidTap()
-   }
+    }
     
 }
 
 // MARK: - TableViewDelegate
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.movieList.value.count
+        return viewModel.movieResult.value.items?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let movie = viewModel.movieList.value[indexPath.row]
+        let movie = viewModel.movieResult.value.items?[indexPath.row] ?? Movie(subtitle: "", image: "", title: "", actor: "", userRating: "", pubDate: "", director: "", link: "")
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.reuseIdentifier, for: indexPath) as! SearchTableViewCell
         
         cell.favoriteButtonAction = {

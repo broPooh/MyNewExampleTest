@@ -91,7 +91,7 @@ final class SearchTableViewCell: UITableViewCell, ViewRepresentable {
         
         titleLable.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(8)
-            make.leading.equalTo(posterImageView.snp.trailing).offset(10).priority(251)
+            make.leading.equalTo(posterImageView.snp.trailing).offset(10)
             make.trailing.equalTo(favoriteButton.snp.leading).offset(-8)
             make.height.equalTo(30)
         }
@@ -117,11 +117,11 @@ final class SearchTableViewCell: UITableViewCell, ViewRepresentable {
     }
     
     func configureData(movie: Movie) {
-        posterImageView.setImage(imageUrl: movie.image)
-        titleLable.text = movie.title
-        directorLable.text = "감독: \(movie.director)"
-        castLable.text = "출연: \(movie.actor)"
-        rateLable.text = "평점: \(movie.userRating)"
+        posterImageView.setImage(imageUrl: movie.image ?? "ss")
+        titleLable.text = movie.title?.htmlEscaped
+        directorLable.text = "감독: \(movie.director ?? "")"
+        castLable.text = "출연: \(movie.actor ?? "")"
+        rateLable.text = "평점: \(movie.userRating ?? "")"
     }
     
     func buttonConfig() {

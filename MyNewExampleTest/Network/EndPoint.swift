@@ -23,8 +23,8 @@ enum Endpoint {
 extension Endpoint {
     var urlString: String {
         switch self {
-        case .searchBook: return URL.makeEndPointString("search/book.json")
-        case .searchMovie: return URL.makeEndPointString("search/movie.json")
+        case .searchBook: return URL.makeEndPointString("v1/search/book.json")
+        case .searchMovie: return URL.makeEndPointString("v1/search/movie.json")
         }
     }
 }
