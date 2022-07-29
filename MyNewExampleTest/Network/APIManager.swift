@@ -14,24 +14,26 @@ import RxCocoa
 import RxAlamofire
 
 final class APIManager {
-    private init() { }
+    private let scheduler: ConcurrentDispatchQueueScheduler
+    
+    private init() {
+        self.scheduler = ConcurrentDispatchQueueScheduler(qos: DispatchQoS(qosClass: DispatchQoS.QoSClass.background, relativePriority: 1))
+    }
     
     typealias Handler = (Data?, URLResponse?, Error?) -> Void
     static let shared = APIManager()
     
     func searchMovie(query: String, start: Int) -> Observable<MovieResult> {
-        let compoenet = APIManager.makeURLComponents(url: Endpoint.searchMovie.urlString, params: [
+        let compoenet = makeURLComponents(url: Endpoint.searchMovie.urlString, params: [
             "query": query
             //"start" : "\(start)"
         ])!
-        print("쿼리2: \(query)")
         
-        let request = APIManager.makeURLRequestFromComponent(component: compoenet, headers: [
+        let request = makeURLRequestFromComponent(component: compoenet, headers: [
             NetworkHeader.clientId.rawValue : NetworkHeaderField.clientId.field,
             NetworkHeader.clientSecret.rawValue : NetworkHeaderField.clientSecret.field,
         ])
                
-        print("리퀘스트: \(request)")
         
 //        return requestData(request)
 //            .map { response, data -> MovieResult in
@@ -54,7 +56,28 @@ final class APIManager {
     }
     
     
-    static func makeURLComponents(url: String, params: [String: String]) -> URLComponents? {
+    func searchMovieRx(query: String, start: Int) -> Observable<MovieResult> {
+        let compoenet = makeURLComponents(url: Endpoint.searchMovie.urlString, params: [
+            "query": query,
+            "start" : "\(start)"
+        ])!
+        
+        let request = makeURLRequestFromComponent(component: compoenet, headers: [
+            NetworkHeader.clientId.rawValue : NetworkHeaderField.clientId.field,
+            NetworkHeader.clientSecret.rawValue : NetworkHeaderField.clientSecret.field,
+        ])
+        
+        return RxAlamofire
+            .requestData(request)
+            .debug()
+            .observe(on: scheduler)
+            .map { response, data -> MovieResult in
+                return try JSONDecoder().decode(MovieResult.self, from: data)
+            }
+    }
+    
+    
+    func makeURLComponents(url: String, params: [String: String]) -> URLComponents? {
         guard var component = URLComponents(string: url) else { return nil}
         component.queryItems = params.map { key, value in
             URLQueryItem(name: key, value: value)
@@ -62,7 +85,7 @@ final class APIManager {
         return component
     }
     
-    static func makeURLRequestFromComponent(component: URLComponents, method: HTTPMethod = .GET, headers: [String : String]) -> URLRequest {
+    func makeURLRequestFromComponent(component: URLComponents, method: HTTPMethod = .GET, headers: [String : String]) -> URLRequest {
         var request = URLRequest(url: component.url!)
         request.httpMethod = method.rawValue
         

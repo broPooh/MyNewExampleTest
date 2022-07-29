@@ -27,7 +27,7 @@ class FavoriteCoordinator: Coordinator, FavoriteViewControllerDelegate {
     func start() {
         let favoriteView = FavoriteView()
         let favoriteViewModel = FavoriteViewModel()
-        let viewController = FavoriteViewController()
+        let viewController = FavoriteViewController(view: favoriteView, viewModel: favoriteViewModel)
         navigationController.present(viewController, animated: true, completion: nil)
     }
     

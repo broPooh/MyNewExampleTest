@@ -47,6 +47,7 @@ final class SearchViewModel: ViewModelType {
         let searchInputReturn: Driver<String>
         let isLoading: Driver<Bool>
         let movieResult: BehaviorRelay<MovieResult>
+        let movieResultRx: Driver<MovieResult>
     }
     
     func transform(input: Input) -> Output {
@@ -67,12 +68,19 @@ final class SearchViewModel: ViewModelType {
             .asObservable()
             
             
+        let results = searchInputText
+                .flatMap { text -> Observable<MovieResult> in
+                    APIManager.shared.searchMovieRx(query: text, start: 1)
+                }
+                .asDriverOnErrorJustComplete()
+                
             
         
         return Output(searchInputText: searchInputText.asDriver(),
                       searchInputReturn: searchInputReturn.asDriver(),
                       isLoading: isLoading.asDriver(),
-                      movieResult: movieResult)
+                      movieResult: movieResult,
+                      movieResultRx: results)
         
     }
     

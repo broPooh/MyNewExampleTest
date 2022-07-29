@@ -49,10 +49,12 @@
 		1B5D32DF2890058D0009E7FC /* FavoriteCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5D32DE2890058D0009E7FC /* FavoriteCoordinator.swift */; };
 		1B5D32E228900C270009E7FC /* DetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5D32E128900C270009E7FC /* DetailCoordinator.swift */; };
 		1B5D32E42890230C0009E7FC /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5D32E32890230C0009E7FC /* RealmModel.swift */; };
+		1B5D32E6289094080009E7FC /* ObservableType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5D32E5289094080009E7FC /* ObservableType+Extension.swift */; };
 		1BB44E76288E5CE20096FA4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB44E75288E5CE20096FA4A /* AppDelegate.swift */; };
 		1BB44E78288E5CE20096FA4A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB44E77288E5CE20096FA4A /* SceneDelegate.swift */; };
 		1BB44E7F288E5CE50096FA4A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BB44E7E288E5CE50096FA4A /* Assets.xcassets */; };
 		1BB44E82288E5CE50096FA4A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BB44E80288E5CE50096FA4A /* LaunchScreen.storyboard */; };
+		1BD30E802893BC11002F9740 /* MovieInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD30E7F2893BC11002F9740 /* MovieInfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,12 +91,14 @@
 		1B5D32DE2890058D0009E7FC /* FavoriteCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCoordinator.swift; sourceTree = "<group>"; };
 		1B5D32E128900C270009E7FC /* DetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCoordinator.swift; sourceTree = "<group>"; };
 		1B5D32E32890230C0009E7FC /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		1B5D32E5289094080009E7FC /* ObservableType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Extension.swift"; sourceTree = "<group>"; };
 		1BB44E72288E5CE20096FA4A /* MyNewExampleTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyNewExampleTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BB44E75288E5CE20096FA4A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BB44E77288E5CE20096FA4A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1BB44E7E288E5CE50096FA4A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1BB44E81288E5CE50096FA4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1BB44E83288E5CE50096FA4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1BD30E7F2893BC11002F9740 /* MovieInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +140,7 @@
 				1B5D32A9288E8CB40009E7FC /* UIViewController+Extension.swift */,
 				1B5D32BC288F69A80009E7FC /* URL+Extension.swift */,
 				1B5D32C7288FD0B40009E7FC /* String+Extension.swift */,
+				1B5D32E5289094080009E7FC /* ObservableType+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -245,6 +250,7 @@
 		1BB44E74288E5CE20096FA4A /* MyNewExampleTest */ = {
 			isa = PBXGroup;
 			children = (
+				1BD30E7E2893BBFA002F9740 /* CustomView */,
 				1BB44E75288E5CE20096FA4A /* AppDelegate.swift */,
 				1BB44E77288E5CE20096FA4A /* SceneDelegate.swift */,
 				1B5D32E32890230C0009E7FC /* RealmModel.swift */,
@@ -265,6 +271,14 @@
 				1B5D3299288E795B0009E7FC /* Appearance.swift */,
 			);
 			path = MyNewExampleTest;
+			sourceTree = "<group>";
+		};
+		1BD30E7E2893BBFA002F9740 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				1BD30E7F2893BC11002F9740 /* MovieInfoView.swift */,
+			);
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -385,12 +399,14 @@
 				1BB44E78288E5CE20096FA4A /* SceneDelegate.swift in Sources */,
 				1B5D32DC289005180009E7FC /* FavoriteViewController.swift in Sources */,
 				1B5D32DF2890058D0009E7FC /* FavoriteCoordinator.swift in Sources */,
+				1B5D32E6289094080009E7FC /* ObservableType+Extension.swift in Sources */,
 				1B5D32D32890042A0009E7FC /* DetailViewModel.swift in Sources */,
 				1B5D32D8289004E10009E7FC /* FavoriteView.swift in Sources */,
 				1B5D32B4288EAD430009E7FC /* Model.swift in Sources */,
 				1B5D32E42890230C0009E7FC /* RealmModel.swift in Sources */,
 				1B5D32B0288E8D650009E7FC /* ImageEnum.swift in Sources */,
 				1B5D32BD288F69A80009E7FC /* URL+Extension.swift in Sources */,
+				1BD30E802893BC11002F9740 /* MovieInfoView.swift in Sources */,
 				1B5D328D288E62B20009E7FC /* Reusable.swift in Sources */,
 				1B5D32D6289004BA0009E7FC /* DetailViewController.swift in Sources */,
 			);

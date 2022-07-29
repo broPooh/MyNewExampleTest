@@ -133,8 +133,14 @@ class SearchViewController: BaseViewController {
                 bool ? self.searchView.showProgress() : self.searchView.dissmissProgress()
             })
             .disposed(by: disposeBag)
-    }
+        
+        output.movieResultRx
+            .drive(onNext: { movieResult in
+                self.searchView.searchTableView.reloadData()
+            })
+            .disposed(by: disposeBag)
     
+    }
     
     @objc func favoriteButtonDidTap() {
         print(#function)
