@@ -70,28 +70,10 @@ class DetailViewController: BaseViewController {
     }
     
     func bindWeb() {
-        detailView.webView.navigationDelegate = self
         guard let url = URL(string: viewModel.movie.link ?? "") else { print("Invalid URL"); return }
         print(url)
         let request = URLRequest(url: url)
         detailView.webView.load(request)
     }
 
-}
-
-extension DetailViewController: WKNavigationDelegate {
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        if let url = navigationAction.request.url {
-            if url.scheme == "mailto" || url.scheme == "tel" {
-                if UIApplication.shared.canOpenURL(url) {
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                }
-                decisionHandler(.cancel)
-                return
-            }
-        }
-
-        decisionHandler(.allow)
-        return
-    }
 }

@@ -8,8 +8,8 @@
 import Foundation
 import RealmSwift
 
-class GitItem: Object {
-    @Persisted var id: Int
+class MovieItem: Object {
+    @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var title: String
     @Persisted var subtitle: String
     @Persisted var image: String
@@ -22,7 +22,6 @@ class GitItem: Object {
     convenience init(id: Int, title: String, subtitle: String, image: String, actor: String, userRating: String, pubDate: String, director: String, link: String) {
         self.init()
         
-        self.id = id
         self.title = title
         self.subtitle = subtitle
         self.image = image
@@ -31,6 +30,32 @@ class GitItem: Object {
         self.pubDate = pubDate
         self.director = director
         self.link = link
+    }
+    
+    
+    static func convertMovie(movie: Movie) -> MovieItem {
+        let movieItem = MovieItem()
+        movieItem.title = movie.title ?? ""
+        movieItem.subtitle = movie.subtitle ?? ""
+        movieItem.image = movie.image ?? ""
+        movieItem.actor = movie.actor ?? ""
+        movieItem.userRating = movie.userRating ?? ""
+        movieItem.pubDate = movie.pubDate ?? ""
+        movieItem.director = movie.director ?? ""
+        movieItem.link = movie.link ?? ""
+        
+        return movieItem    }
+    
+    static func updateMovie(oldMovie:MovieItem, updateMovie: MovieItem) -> MovieItem {
+        oldMovie.title = updateMovie.title
+        oldMovie.subtitle = updateMovie.subtitle
+        oldMovie.image = updateMovie.image
+        oldMovie.actor = updateMovie.actor
+        oldMovie.userRating = updateMovie.userRating
+        oldMovie.pubDate = updateMovie.pubDate
+        oldMovie.director = updateMovie.director
+        oldMovie.link = updateMovie.link
+        return oldMovie
     }
     
 }

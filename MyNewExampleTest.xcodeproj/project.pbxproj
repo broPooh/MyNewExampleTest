@@ -55,6 +55,8 @@
 		1BB44E7F288E5CE50096FA4A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BB44E7E288E5CE50096FA4A /* Assets.xcassets */; };
 		1BB44E82288E5CE50096FA4A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BB44E80288E5CE50096FA4A /* LaunchScreen.storyboard */; };
 		1BC3FC29289A9CF0006C5B40 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BC3FC28289A9CF0006C5B40 /* WebKit.framework */; };
+		1BC5E231289AA42F001E8BFA /* DataBaseManagerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC5E230289AA42F001E8BFA /* DataBaseManagerType.swift */; };
+		1BC5E233289AA526001E8BFA /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC5E232289AA526001E8BFA /* RealmManager.swift */; };
 		1BD30E802893BC11002F9740 /* MovieInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD30E7F2893BC11002F9740 /* MovieInfoView.swift */; };
 		1BFA91F32899F88800AB1192 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 1BFA91F22899F88800AB1192 /* .gitignore */; };
 		1BFA91FD289A7E6B00AB1192 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFA91FC289A7E6B00AB1192 /* ViewController.swift */; };
@@ -103,6 +105,8 @@
 		1BB44E81288E5CE50096FA4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1BB44E83288E5CE50096FA4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1BC3FC28289A9CF0006C5B40 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		1BC5E230289AA42F001E8BFA /* DataBaseManagerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManagerType.swift; sourceTree = "<group>"; };
+		1BC5E232289AA526001E8BFA /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		1BD30E7F2893BC11002F9740 /* MovieInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfoView.swift; sourceTree = "<group>"; };
 		1BFA91F22899F88800AB1192 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		1BFA91FB289A4BE700AB1192 /* MYAPIConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = MYAPIConfig.xcconfig; sourceTree = "<group>"; };
@@ -270,6 +274,8 @@
 				1BB44E75288E5CE20096FA4A /* AppDelegate.swift */,
 				1BB44E77288E5CE20096FA4A /* SceneDelegate.swift */,
 				1B5D32E32890230C0009E7FC /* RealmModel.swift */,
+				1BC5E230289AA42F001E8BFA /* DataBaseManagerType.swift */,
+				1BC5E232289AA526001E8BFA /* RealmManager.swift */,
 				1B5D32DD2890051D0009E7FC /* Favorite */,
 				1B5D32D42890048A0009E7FC /* Detail */,
 				1B5D32C1288F6B620009E7FC /* Common */,
@@ -422,6 +428,7 @@
 				1B5D329C288E7A2C0009E7FC /* Coordiantor.swift in Sources */,
 				1B5D32B6288F51730009E7FC /* SearchTableViewCell.swift in Sources */,
 				1B5D328A288E621A0009E7FC /* ViewModelType.swift in Sources */,
+				1BC5E233289AA526001E8BFA /* RealmManager.swift in Sources */,
 				1B5D32B9288F68F20009E7FC /* APIEnum.swift in Sources */,
 				1B5D3292288E631B0009E7FC /* UITableViewCell+Extension.swift in Sources */,
 				1B5D32A4288E8C530009E7FC /* SearchView.swift in Sources */,
@@ -436,6 +443,7 @@
 				1B5D32DF2890058D0009E7FC /* FavoriteCoordinator.swift in Sources */,
 				1B5D32E6289094080009E7FC /* ObservableType+Extension.swift in Sources */,
 				1B5D32D32890042A0009E7FC /* DetailViewModel.swift in Sources */,
+				1BC5E231289AA42F001E8BFA /* DataBaseManagerType.swift in Sources */,
 				1B5D32D8289004E10009E7FC /* FavoriteView.swift in Sources */,
 				1B5D32B4288EAD430009E7FC /* Model.swift in Sources */,
 				1B5D32E42890230C0009E7FC /* RealmModel.swift in Sources */,
