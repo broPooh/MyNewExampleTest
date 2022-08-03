@@ -54,6 +54,7 @@
 		1BB44E78288E5CE20096FA4A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB44E77288E5CE20096FA4A /* SceneDelegate.swift */; };
 		1BB44E7F288E5CE50096FA4A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BB44E7E288E5CE50096FA4A /* Assets.xcassets */; };
 		1BB44E82288E5CE50096FA4A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BB44E80288E5CE50096FA4A /* LaunchScreen.storyboard */; };
+		1BC3FC29289A9CF0006C5B40 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BC3FC28289A9CF0006C5B40 /* WebKit.framework */; };
 		1BD30E802893BC11002F9740 /* MovieInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD30E7F2893BC11002F9740 /* MovieInfoView.swift */; };
 		1BFA91F32899F88800AB1192 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 1BFA91F22899F88800AB1192 /* .gitignore */; };
 		1BFA91FD289A7E6B00AB1192 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFA91FC289A7E6B00AB1192 /* ViewController.swift */; };
@@ -101,6 +102,7 @@
 		1BB44E7E288E5CE50096FA4A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1BB44E81288E5CE50096FA4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1BB44E83288E5CE50096FA4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1BC3FC28289A9CF0006C5B40 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		1BD30E7F2893BC11002F9740 /* MovieInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfoView.swift; sourceTree = "<group>"; };
 		1BFA91F22899F88800AB1192 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		1BFA91FB289A4BE700AB1192 /* MYAPIConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = MYAPIConfig.xcconfig; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				1B5D3276288E5DD20009E7FC /* RxSwift in Frameworks */,
 				1B5D32CD288FFD4F0009E7FC /* RealmSwift in Frameworks */,
 				1B5D3274288E5DD20009E7FC /* RxCocoa in Frameworks */,
+				1BC3FC29289A9CF0006C5B40 /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +251,7 @@
 				1BFA91F22899F88800AB1192 /* .gitignore */,
 				1BB44E74288E5CE20096FA4A /* MyNewExampleTest */,
 				1BB44E73288E5CE20096FA4A /* Products */,
+				1BC3FC27289A9CF0006C5B40 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -282,6 +286,14 @@
 				1BFA91FB289A4BE700AB1192 /* MYAPIConfig.xcconfig */,
 			);
 			path = MyNewExampleTest;
+			sourceTree = "<group>";
+		};
+		1BC3FC27289A9CF0006C5B40 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1BC3FC28289A9CF0006C5B40 /* WebKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		1BD30E7E2893BBFA002F9740 /* CustomView */ = {
@@ -500,7 +512,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -554,7 +566,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -572,6 +584,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2EZ5QWFYX2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyNewExampleTest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -599,6 +612,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2EZ5QWFYX2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyNewExampleTest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

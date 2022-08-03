@@ -39,9 +39,6 @@ final class APIManager {
             .map { response -> MovieResult in
                 let data = try JSONSerialization.data(withJSONObject: response, options: .prettyPrinted)
                 let movieresult = try JSONDecoder().decode(MovieResult.self, from: data)
-
-                
-                print(movieresult)
                 return movieresult
             }
           

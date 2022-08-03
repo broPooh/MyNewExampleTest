@@ -13,4 +13,5 @@ enum SystemImage: String {
     case xmark
     case star
     case starFill = "star.fill"
+    case back = "chevron.backward"
 }

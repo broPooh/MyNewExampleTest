@@ -13,6 +13,12 @@ import RxSwift
 final class DetailViewModel: ViewModelType {
     var disposeBag = DisposeBag()
     
+    var movie: Movie
+    
+    init(movie: Movie) {
+        self.movie = movie
+    }
+    
     struct Input {
 
     }

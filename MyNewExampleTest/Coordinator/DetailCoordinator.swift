@@ -11,18 +11,19 @@ class DetailCoordinator: Coordinator {
 
     var navigationController: UINavigationController
     var childCoordinators: [Coordinator] = []
-  
+    var movie: Movie
     
 
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, movie: Movie) {
         self.navigationController = navigationController
-        self.navigationController.viewControllers = []
+        self.movie = movie
     }
     
     func start() {
         let detailView = DetailView()
-        let detailViewModel = DetailViewModel()
-        let viewController = DetailViewController()
+        let detailViewModel = DetailViewModel(movie: movie)
+        let viewController = DetailViewController(view: detailView, viewModel: detailViewModel)
+        navigationController.navigationItem.backButtonTitle = ""
         navigationController.pushViewController(viewController, animated: true)
     }
 

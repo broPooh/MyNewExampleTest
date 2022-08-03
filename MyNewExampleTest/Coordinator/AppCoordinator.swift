@@ -33,8 +33,8 @@ class AppCoordinator: Coordinator, MainCoordinatorDelegate {
         coordinator.start()
     }
     
-    private func showDetailViewController() {
-        let coordinator = DetailCoordinator(navigationController: navigationController)
+    private func showDetailViewController(movie: Movie) {
+        let coordinator = DetailCoordinator(navigationController: navigationController, movie: movie)
         coordinator.start()
         self.childCoordinators.append(coordinator)
     }
@@ -43,9 +43,9 @@ class AppCoordinator: Coordinator, MainCoordinatorDelegate {
         self.showFavoriteViewController()
     }
     
-    func searchCellDidTap(_ coordinator: MainCoordinator) {
+    func searchCellDidTap(_ coordinator: MainCoordinator, movie: Movie) {
         self.childCoordinators = self.childCoordinators.filter { $0 !== coordinator }
-        self.showDetailViewController()
+        self.showDetailViewController(movie: movie)
     }
     
 }

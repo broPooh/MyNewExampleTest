@@ -38,7 +38,7 @@ final class DetailView: BaseUIView {
         super.setupConstraints()
         
         movieInfoView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
+            make.top.equalTo(safeAreaLayoutGuide)
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
             make.height.equalTo(120)

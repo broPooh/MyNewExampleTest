@@ -13,7 +13,7 @@ import SnapKit
 
 protocol SearchViewControllerDelegate {
     func favoriteButtonDidTap()
-    func searchCellDidTap()
+    func searchCellDidTap(movie: Movie)
 }
 
 class SearchViewController: BaseViewController {
@@ -154,6 +154,11 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let movie = viewModel.movieResult.value.items[indexPath.row]
+        delegate?.searchCellDidTap(movie: movie)
     }
     
 }

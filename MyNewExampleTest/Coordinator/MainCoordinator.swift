@@ -9,7 +9,7 @@ import UIKit
 
 protocol MainCoordinatorDelegate {
     func favoriteDidTap(_ coordinator: MainCoordinator)
-    func searchCellDidTap(_ coordinator: MainCoordinator)
+    func searchCellDidTap(_ coordinator: MainCoordinator, movie: Movie)
 }
 
 class MainCoordinator: Coordinator, SearchViewControllerDelegate {
@@ -37,8 +37,8 @@ class MainCoordinator: Coordinator, SearchViewControllerDelegate {
         delegate?.favoriteDidTap(self)
     }
     
-    func searchCellDidTap() {
-        delegate?.searchCellDidTap(self)
+    func searchCellDidTap(movie: Movie) {
+        delegate?.searchCellDidTap(self, movie: movie)
     }
     
     
