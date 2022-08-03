@@ -82,13 +82,12 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //let movie = viewModel.movieResult.value.items?[indexPath.row] ?? Movie(subtitle: "", image: "", title: "", actor: "", userRating: "", pubDate: "", director: "", link: "")
-        
-        let movie = Movie(subtitle: "", image: "", title: "", actor: "", userRating: "", pubDate: "", director: "", link: "")
-        let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.reuseIdentifier, for: indexPath) as! SearchTableViewCell
+        var movie = Movie(subtitle: "", image: "", title: "", actor: "", userRating: "", pubDate: "", director: "", link: "")
+        let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteTableViewCell.reuseIdentifier, for: indexPath) as! FavoriteTableViewCell
         
         cell.favoriteButtonAction = {
-            print("버튼 클릭")
+            movie.favorite?.toggle()
+            cell.changeButtonImage(favorite: movie.favorite!)
         }
         
         cell.configureData(movie: movie)
@@ -100,3 +99,4 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
         return 120
     }
 }
+

@@ -58,6 +58,7 @@
 		1BFA91F32899F88800AB1192 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 1BFA91F22899F88800AB1192 /* .gitignore */; };
 		1BFA91FD289A7E6B00AB1192 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFA91FC289A7E6B00AB1192 /* ViewController.swift */; };
 		1BFA91FF289A7EBE00AB1192 /* TransitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFA91FE289A7EBE00AB1192 /* TransitionModel.swift */; };
+		1BFA9201289A88E100AB1192 /* FavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFA9200289A88E100AB1192 /* FavoriteTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -105,6 +106,7 @@
 		1BFA91FB289A4BE700AB1192 /* MYAPIConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = MYAPIConfig.xcconfig; sourceTree = "<group>"; };
 		1BFA91FC289A7E6B00AB1192 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1BFA91FE289A7EBE00AB1192 /* TransitionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionModel.swift; sourceTree = "<group>"; };
+		1BFA9200289A88E100AB1192 /* FavoriteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,7 +222,7 @@
 		1B5D32DD2890051D0009E7FC /* Favorite */ = {
 			isa = PBXGroup;
 			children = (
-				1B5D32D7289004E10009E7FC /* FavoriteView.swift */,
+				1BFA9202289A890000AB1192 /* View */,
 				1B5D32D9289004FF0009E7FC /* FavoriteViewModel.swift */,
 				1B5D32DB289005180009E7FC /* FavoriteViewController.swift */,
 			);
@@ -288,6 +290,15 @@
 				1BD30E7F2893BC11002F9740 /* MovieInfoView.swift */,
 			);
 			path = CustomView;
+			sourceTree = "<group>";
+		};
+		1BFA9202289A890000AB1192 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1B5D32D7289004E10009E7FC /* FavoriteView.swift */,
+				1BFA9200289A88E100AB1192 /* FavoriteTableViewCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -390,6 +401,7 @@
 				1B5D32A2288E7C520009E7FC /* MainCoordinator.swift in Sources */,
 				1B5D32A0288E7B4E0009E7FC /* SearchViewController.swift in Sources */,
 				1B5D32BB288F695F0009E7FC /* EndPoint.swift in Sources */,
+				1BFA9201289A88E100AB1192 /* FavoriteTableViewCell.swift in Sources */,
 				1B5D3290288E62E60009E7FC /* UIImageView+Extension.swift in Sources */,
 				1B5D329A288E795B0009E7FC /* Appearance.swift in Sources */,
 				1B5D32C8288FD0B40009E7FC /* String+Extension.swift in Sources */,

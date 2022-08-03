@@ -13,7 +13,7 @@ final class FavoriteView: BaseUIView {
     
     var favoriteTableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.reuseIdentifier)
+        tableView.register(FavoriteTableViewCell.self, forCellReuseIdentifier: FavoriteTableViewCell.reuseIdentifier)
         tableView.separatorStyle = .none
         tableView.keyboardDismissMode = .onDrag
         return tableView
