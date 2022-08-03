@@ -28,6 +28,8 @@ class MainCoordinator: Coordinator, SearchViewControllerDelegate {
         let searchViewModel = SearchViewModel()
 
         let viewController = SearchViewController(view: searchView, viewModel: searchViewModel)
+        viewController.delegate = self
+        
         self.navigationController.viewControllers = [viewController]
     }
     

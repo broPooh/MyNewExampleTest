@@ -69,6 +69,7 @@ class FavoriteViewController: BaseViewController {
     
     @objc func dissmissButtonDidTap() {
         print(#function)
+        dismiss(animated: true)
     }
     
 

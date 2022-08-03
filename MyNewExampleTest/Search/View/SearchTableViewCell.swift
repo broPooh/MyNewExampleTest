@@ -47,7 +47,7 @@ final class SearchTableViewCell: UITableViewCell, ViewRepresentable {
     
     let favoriteButton: UIButton = {
         let favoriteButton = UIButton()
-        favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
+        favoriteButton.setImage(UIImage(systemName: SystemImage.starFill.rawValue), for: .normal)
         favoriteButton.tintColor = .lightGray
         return favoriteButton
     }()
@@ -124,7 +124,7 @@ final class SearchTableViewCell: UITableViewCell, ViewRepresentable {
         castLable.text = "출연: \(movie.actor ?? "")"
         rateLable.text = "평점: \(movie.userRating ?? "")"
         
-        //changeButtonImage(favorite: movie.favorite)
+        changeButtonImage(favorite: movie.favorite!)
     }
     
     func buttonConfig() {
@@ -132,14 +132,8 @@ final class SearchTableViewCell: UITableViewCell, ViewRepresentable {
     }
     
     func changeButtonImage(favorite: Bool) {
-        if favorite {
-            favoriteButton.setImage(UIImage(systemName: SystemImage.starFill.rawValue), for: .normal)
-            favoriteButton.tintColor = .yellow
-        } else {
-            favoriteButton.setImage(UIImage(systemName: SystemImage.star.rawValue), for: .normal)
-            favoriteButton.tintColor = .lightGray
-        }
-        
+        let color: UIColor = favorite ? .yellow : .lightGray
+        favoriteButton.tintColor = color
     }
     
     @objc func favoriteButtonClicked() {

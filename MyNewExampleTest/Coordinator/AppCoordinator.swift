@@ -31,7 +31,6 @@ class AppCoordinator: Coordinator, MainCoordinatorDelegate {
     private func showFavoriteViewController() {
         let coordinator = FavoriteCoordinator(navigationController: navigationController)
         coordinator.start()
-        self.childCoordinators.append(coordinator)
     }
     
     private func showDetailViewController() {
@@ -41,7 +40,6 @@ class AppCoordinator: Coordinator, MainCoordinatorDelegate {
     }
     
     func favoriteDidTap(_ coordinator: MainCoordinator) {
-        self.childCoordinators = self.childCoordinators.filter { $0 !== coordinator }
         self.showFavoriteViewController()
     }
     

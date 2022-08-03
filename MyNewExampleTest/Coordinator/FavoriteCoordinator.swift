@@ -21,14 +21,17 @@ class FavoriteCoordinator: Coordinator, FavoriteViewControllerDelegate {
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.navigationController.viewControllers = []
     }
     
     func start() {
         let favoriteView = FavoriteView()
         let favoriteViewModel = FavoriteViewModel()
         let viewController = FavoriteViewController(view: favoriteView, viewModel: favoriteViewModel)
-        navigationController.present(viewController, animated: true, completion: nil)
+        
+        let nav = UINavigationController(rootViewController: viewController)
+        nav.modalPresentationStyle = .fullScreen
+        //현재의 화면 뷰컨트롤러에서 화면전환을 요청해야함..!!
+        navigationController.present(nav, animated: true, completion: nil)
     }
     
     func favoriteCellDidTap() {
