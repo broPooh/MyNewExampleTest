@@ -55,6 +55,7 @@
 		1BB44E7F288E5CE50096FA4A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BB44E7E288E5CE50096FA4A /* Assets.xcassets */; };
 		1BB44E82288E5CE50096FA4A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BB44E80288E5CE50096FA4A /* LaunchScreen.storyboard */; };
 		1BD30E802893BC11002F9740 /* MovieInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD30E7F2893BC11002F9740 /* MovieInfoView.swift */; };
+		1BFA91F32899F88800AB1192 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 1BFA91F22899F88800AB1192 /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,7 +63,6 @@
 		1B5D328C288E62B20009E7FC /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		1B5D328F288E62E60009E7FC /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		1B5D3291288E631B0009E7FC /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
-		1B5D3295288E73330009E7FC /* apiConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = apiConfig.xcconfig; sourceTree = "<group>"; };
 		1B5D3297288E74020009E7FC /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		1B5D3299288E795B0009E7FC /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		1B5D329B288E7A2C0009E7FC /* Coordiantor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordiantor.swift; sourceTree = "<group>"; };
@@ -99,6 +99,8 @@
 		1BB44E81288E5CE50096FA4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1BB44E83288E5CE50096FA4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1BD30E7F2893BC11002F9740 /* MovieInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfoView.swift; sourceTree = "<group>"; };
+		1BFA91F22899F88800AB1192 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		1BFA91FB289A4BE700AB1192 /* MYAPIConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = MYAPIConfig.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +236,7 @@
 		1BB44E69288E5CE20096FA4A = {
 			isa = PBXGroup;
 			children = (
+				1BFA91F22899F88800AB1192 /* .gitignore */,
 				1BB44E74288E5CE20096FA4A /* MyNewExampleTest */,
 				1BB44E73288E5CE20096FA4A /* Products */,
 			);
@@ -267,7 +270,7 @@
 				1BB44E7E288E5CE50096FA4A /* Assets.xcassets */,
 				1BB44E80288E5CE50096FA4A /* LaunchScreen.storyboard */,
 				1BB44E83288E5CE50096FA4A /* Info.plist */,
-				1B5D3295288E73330009E7FC /* apiConfig.xcconfig */,
+				1BFA91FB289A4BE700AB1192 /* MYAPIConfig.xcconfig */,
 				1B5D3299288E795B0009E7FC /* Appearance.swift */,
 			);
 			path = MyNewExampleTest;
@@ -362,6 +365,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BB44E82288E5CE50096FA4A /* LaunchScreen.storyboard in Resources */,
+				1BFA91F32899F88800AB1192 /* .gitignore in Resources */,
 				1BB44E7F288E5CE50096FA4A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -542,7 +546,7 @@
 		};
 		1BB44E87288E5CE50096FA4A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1B5D3295288E73330009E7FC /* apiConfig.xcconfig */;
+			baseConfigurationReference = 1BFA91FB289A4BE700AB1192 /* MYAPIConfig.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -569,7 +573,7 @@
 		};
 		1BB44E88288E5CE50096FA4A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1B5D3295288E73330009E7FC /* apiConfig.xcconfig */;
+			baseConfigurationReference = 1BFA91FB289A4BE700AB1192 /* MYAPIConfig.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

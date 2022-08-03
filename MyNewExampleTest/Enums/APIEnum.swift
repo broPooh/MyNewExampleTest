@@ -30,11 +30,14 @@ enum NaverStatusCode: Int {
 
 enum NaverSearchError: Int, Error {
 
-    case notModified = 304
+    case checkParameter = 400
     case unAuthorization = 401
+    case faileRequset = 403
     case notFound = 404
+    case methodError = 405
     case validationFailed = 422
-    case unavailable = 503
+    case callLimitError = 429
+    case systemError = 500
     case unknown
     case failed
     case invalidResponse
@@ -48,11 +51,14 @@ enum NaverSearchError: Int, Error {
 extension NaverSearchError {
     var errorDescription: String {
         switch self {
-        case .notModified: return "304: Not Modified"
+        case .checkParameter: return "400: Parameter Error"
         case .unAuthorization: return "401: Authorization Error"
+        case .faileRequset: return "403: Requset Error"
         case .notFound: return "404: Not Found"
+        case .methodError: return "405: HTTP Method Error"
         case .validationFailed: return "422: Validation Failed"
-        case .unavailable: return "503: Unavailable"
+        case .callLimitError: return "429: Limit Error"
+        case .systemError: return "500: System Error"
         case .failed: return "네트워크통신 실패"
         case .invalidData: return "시리얼라이즈 실패"
         default: return "UN_KNOWN_ERROR"
