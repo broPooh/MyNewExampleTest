@@ -134,17 +134,16 @@ class SearchViewController: BaseViewController {
 // MARK: - TableViewDelegate
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return viewModel.movieResult.value.items.count ?? 0
         return viewModel.movieResult.value.items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let movie = viewModel.movieResult.value.items?[indexPath.row] ?? Movie(subtitle: "", image: "", title: "", actor: "", userRating: "", pubDate: "", director: "", link: "")
-        let movie = viewModel.movieResult.value.items[indexPath.row]
+        var movie = viewModel.movieResult.value.items[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.reuseIdentifier, for: indexPath) as! SearchTableViewCell
         
         cell.favoriteButtonAction = {
-            print("버튼 클릭")
+            //movie.favorite.toggle()
+            //cell.changeButtonImage(favorite: movie.favorite)
         }
         
         cell.configureData(movie: movie)

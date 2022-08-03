@@ -123,10 +123,23 @@ final class SearchTableViewCell: UITableViewCell, ViewRepresentable {
         directorLable.text = "감독: \(movie.director ?? "")"
         castLable.text = "출연: \(movie.actor ?? "")"
         rateLable.text = "평점: \(movie.userRating ?? "")"
+        
+        //changeButtonImage(favorite: movie.favorite)
     }
     
     func buttonConfig() {
         favoriteButton.addTarget(self, action: #selector(favoriteButtonClicked), for: .touchUpInside)
+    }
+    
+    func changeButtonImage(favorite: Bool) {
+        if favorite {
+            favoriteButton.setImage(UIImage(systemName: SystemImage.starFill.rawValue), for: .normal)
+            favoriteButton.tintColor = .yellow
+        } else {
+            favoriteButton.setImage(UIImage(systemName: SystemImage.star.rawValue), for: .normal)
+            favoriteButton.tintColor = .lightGray
+        }
+        
     }
     
     @objc func favoriteButtonClicked() {

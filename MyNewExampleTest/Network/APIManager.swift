@@ -37,12 +37,14 @@ final class APIManager {
         return requestJSON(request)
             .map { $1 }
             .map { response -> MovieResult in
-                print(response)
                 let data = try JSONSerialization.data(withJSONObject: response, options: .prettyPrinted)
                 let movieresult = try JSONDecoder().decode(MovieResult.self, from: data)
+
+                
+                print(movieresult)
                 return movieresult
             }
-            
+          
     }
     
     
