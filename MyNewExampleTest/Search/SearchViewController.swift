@@ -168,19 +168,8 @@ extension SearchViewController: UITableViewDataSourcePrefetching {
         for indexPath in indexPaths {
             if itemCount - 1 == indexPath.row && itemCount < totalCount {
                 let start = viewModel.startPage.value + 1
-                APIManager.shared.searchMovie(query: viewModel.searchInputText.value, start: start)
-                    .subscribe(onNext: { movieResult in
-                        let addArray = movieResult.items
-                        let oldArray = self.viewModel.movieResult.value.items
-                        let newArray = oldArray + addArray
-                        
-                        var newMovieResult = movieResult
-                        newMovieResult.items = newArray
-                        
-                        self.viewModel.movieResult.accept(newMovieResult)
-                        self.viewModel.startPage.accept(movieResult.start ?? 1)
-                        self.viewModel.totalCount.accept(movieResult.total ?? 1)
-                        
+                viewModel.fetchMovie(start: start)
+                    .subscribe(onNext: {
                         self.searchView.searchTableView.reloadData()
                     })
                     .disposed(by: disposeBag)

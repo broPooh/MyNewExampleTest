@@ -53,6 +53,9 @@ final class SearchViewModel: ViewModelType {
         
         let searchText = searchInputText
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
+            .filter({ text in
+                return text != ""
+            })
             .do(onNext: { _ in
                 self.isLoading.accept(true)
             })
@@ -63,8 +66,6 @@ final class SearchViewModel: ViewModelType {
             })
             .asDriver(onErrorJustReturn: MovieResult(lastBuildDate: nil, start: 1, total: 1, items: [], display: 10))
             .asDriver()
-        
-        
         
         
         let searchButton = input.searchBarReturn
@@ -79,7 +80,7 @@ final class SearchViewModel: ViewModelType {
                 self.isLoading.accept(false)
             })
             .asDriver(onErrorJustReturn: MovieResult(lastBuildDate: nil, start: 1, total: 1, items: [], display: 10))
-                .asDriver()
+
             
         
         return Output(searchInputText: searchText,
@@ -92,6 +93,31 @@ final class SearchViewModel: ViewModelType {
         APIManager.shared.searchMovie(query: query, start: start)
             .bind(to: movieResult)
             .disposed(by: disposeBag)
+    }
+    
+    func fetchMovie(start: Int) -> Observable<Void> {
+        return searchInputText
+            .do(onNext: { _ in
+                self.isLoading.accept(true)
+            })
+            .flatMap { text  in APIManager.shared.searchMovie(query: text, start: start)
+            }
+            .do(onNext: { movieResult in
+                self.isLoading.accept(false)
+                
+                let addArray = movieResult.items
+                let oldArray = self.movieResult.value.items
+                let newArray = oldArray + addArray
+                
+                var newMovieResult = movieResult
+                newMovieResult.items = newArray
+                
+                self.movieResult.accept(newMovieResult)
+                self.startPage.accept(movieResult.start ?? 1)
+                self.totalCount.accept(movieResult.total ?? 1)
+            })
+            .map { _ in}
+            
     }
     
 }
