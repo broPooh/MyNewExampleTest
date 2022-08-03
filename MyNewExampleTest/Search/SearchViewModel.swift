@@ -15,7 +15,11 @@ final class SearchViewModel: ViewModelType {
     
     let searchInputText: BehaviorRelay<String> = BehaviorRelay(value: "")
     let searchInputReturn: BehaviorRelay<String> = BehaviorRelay(value: "")
-    let movieResult: BehaviorRelay<MovieResult> = BehaviorRelay(value: MovieResult(lastBuildDate: "", start: 1, total: 1, items: [
+    
+    let startPage: BehaviorRelay<Int> = BehaviorRelay(value: 1)
+    let totalCount: BehaviorRelay<Int> = BehaviorRelay(value: 1)
+    
+    var movieResult: BehaviorRelay<MovieResult> = BehaviorRelay(value: MovieResult(lastBuildDate: "", start: 1, total: 1, items: [
         Movie(subtitle: "test", image: "https://search.pstatic.net/common?type=o&size=174x246&quality=100&direct=true&src=https%3A%2F%2Fs.pstatic.net%2Fmovie.phinf%2F20220708_75%2F16572722362230AyHS_JPEG%2Fmovie_image.jpg%3Ftype%3Dw640_2", title: "title", actor: "actor", userRating: "5.0", pubDate: "2020.20.20", director: "director", link: "link"),
         Movie(subtitle: "test", image: "https://search.pstatic.net/common?type=o&size=174x246&quality=100&direct=true&src=https%3A%2F%2Fs.pstatic.net%2Fmovie.phinf%2F20220708_75%2F16572722362230AyHS_JPEG%2Fmovie_image.jpg%3Ftype%3Dw640_2", title: "title", actor: "actor", userRating: "5.0", pubDate: "2020.20.20", director: "director", link: "link"),
         Movie(subtitle: "test", image: "https://search.pstatic.net/common?type=o&size=174x246&quality=100&direct=true&src=https%3A%2F%2Fs.pstatic.net%2Fmovie.phinf%2F20220708_75%2F16572722362230AyHS_JPEG%2Fmovie_image.jpg%3Ftype%3Dw640_2", title: "title", actor: "actor", userRating: "5.0", pubDate: "2020.20.20", director: "director", link: "link"),
@@ -23,15 +27,7 @@ final class SearchViewModel: ViewModelType {
         Movie(subtitle: "test", image: "https://search.pstatic.net/common?type=o&size=174x246&quality=100&direct=true&src=https%3A%2F%2Fs.pstatic.net%2Fmovie.phinf%2F20220708_75%2F16572722362230AyHS_JPEG%2Fmovie_image.jpg%3Ftype%3Dw640_2", title: "title", actor: "actor", userRating: "5.0", pubDate: "2020.20.20", director: "director", link: "link"),
         Movie(subtitle: "test", image: "https://search.pstatic.net/common?type=o&size=174x246&quality=100&direct=true&src=https%3A%2F%2Fs.pstatic.net%2Fmovie.phinf%2F20220708_75%2F16572722362230AyHS_JPEG%2Fmovie_image.jpg%3Ftype%3Dw640_2", title: "title", actor: "actor", userRating: "5.0", pubDate: "2020.20.20", director: "director", link: "link"),
     ], display: 1))
-    let movieList: BehaviorRelay<[Movie]> = BehaviorRelay(value: [
-        Movie(subtitle: "test", image: "https://search.pstatic.net/common?type=o&size=174x246&quality=100&direct=true&src=https%3A%2F%2Fs.pstatic.net%2Fmovie.phinf%2F20220708_75%2F16572722362230AyHS_JPEG%2Fmovie_image.jpg%3Ftype%3Dw640_2", title: "title", actor: "actor", userRating: "5.0", pubDate: "2020.20.20", director: "director", link: "link"),
-        Movie(subtitle: "test", image: "https://search.pstatic.net/common?type=o&size=174x246&quality=100&direct=true&src=https%3A%2F%2Fs.pstatic.net%2Fmovie.phinf%2F20220708_75%2F16572722362230AyHS_JPEG%2Fmovie_image.jpg%3Ftype%3Dw640_2", title: "title", actor: "actor", userRating: "5.0", pubDate: "2020.20.20", director: "director", link: "link"),
-        Movie(subtitle: "test", image: "https://search.pstatic.net/common?type=o&size=174x246&quality=100&direct=true&src=https%3A%2F%2Fs.pstatic.net%2Fmovie.phinf%2F20220708_75%2F16572722362230AyHS_JPEG%2Fmovie_image.jpg%3Ftype%3Dw640_2", title: "title", actor: "actor", userRating: "5.0", pubDate: "2020.20.20", director: "director", link: "link"),
-        Movie(subtitle: "test", image: "https://search.pstatic.net/common?type=o&size=174x246&quality=100&direct=true&src=https%3A%2F%2Fs.pstatic.net%2Fmovie.phinf%2F20220708_75%2F16572722362230AyHS_JPEG%2Fmovie_image.jpg%3Ftype%3Dw640_2", title: "title", actor: "actor", userRating: "5.0", pubDate: "2020.20.20", director: "director", link: "link"),
-        Movie(subtitle: "test", image: "https://search.pstatic.net/common?type=o&size=174x246&quality=100&direct=true&src=https%3A%2F%2Fs.pstatic.net%2Fmovie.phinf%2F20220708_75%2F16572722362230AyHS_JPEG%2Fmovie_image.jpg%3Ftype%3Dw640_2", title: "title", actor: "actor", userRating: "5.0", pubDate: "2020.20.20", director: "director", link: "link"),
-        Movie(subtitle: "test", image: "https://search.pstatic.net/common?type=o&size=174x246&quality=100&direct=true&src=https%3A%2F%2Fs.pstatic.net%2Fmovie.phinf%2F20220708_75%2F16572722362230AyHS_JPEG%2Fmovie_image.jpg%3Ftype%3Dw640_2", title: "title", actor: "actor", userRating: "5.0", pubDate: "2020.20.20", director: "director", link: "link"),
-    ])
-    
+
     let isLoading = BehaviorRelay<Bool>(value: false)
     
     struct Input {
@@ -43,11 +39,10 @@ final class SearchViewModel: ViewModelType {
     
     struct Output {
         //검색결과에 따른 화면 갱신
-        let searchInputText: Driver<String>
-        let searchInputReturn: Driver<String>
+        //let searchInputText: Driver<String>
+        let searchInputText: Driver<MovieResult>
+        let searchInputReturn: Driver<MovieResult>
         let isLoading: Driver<Bool>
-        let movieResult: BehaviorRelay<MovieResult>
-        let movieResultRx: Driver<MovieResult>
     }
     
     func transform(input: Input) -> Output {
@@ -56,8 +51,26 @@ final class SearchViewModel: ViewModelType {
             .bind(to: searchInputText)
             .disposed(by: disposeBag)
         
-        input.searchBarReturn
-            .map { self.searchInputText.value }
+        let searchText = searchInputText
+            .debounce(.seconds(1), scheduler: MainScheduler.instance)
+            .do(onNext: { _ in
+                self.isLoading.accept(true)
+            })
+            .flatMap { text  in APIManager.shared.searchMovie(query: text, start: 1)
+            }
+            .do(onNext: { _ in
+                self.isLoading.accept(false)
+            })
+            .asDriver(onErrorJustReturn: MovieResult(lastBuildDate: nil, start: 1, total: 1, items: [], display: 10))
+            .asDriver()
+        
+        
+        
+        
+        let searchButton = input.searchBarReturn
+            .map({ () -> String in
+                return self.searchInputText.value
+            })
             .do(onNext: { _ in
                 self.isLoading.accept(true)
             })
@@ -65,22 +78,13 @@ final class SearchViewModel: ViewModelType {
             .do(onNext: { _ in
                 self.isLoading.accept(false)
             })
-            .asObservable()
-            
-            
-        let results = searchInputText
-                .flatMap { text -> Observable<MovieResult> in
-                    APIManager.shared.searchMovieRx(query: text, start: 1)
-                }
-                .asDriverOnErrorJustComplete()
-                
+            .asDriver(onErrorJustReturn: MovieResult(lastBuildDate: nil, start: 1, total: 1, items: [], display: 10))
+                .asDriver()
             
         
-        return Output(searchInputText: searchInputText.asDriver(),
-                      searchInputReturn: searchInputReturn.asDriver(),
-                      isLoading: isLoading.asDriver(),
-                      movieResult: movieResult,
-                      movieResultRx: results)
+        return Output(searchInputText: searchText,
+                      searchInputReturn: searchButton,
+                      isLoading: isLoading.asDriver())
         
     }
     

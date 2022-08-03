@@ -12,7 +12,7 @@ struct MovieResult: Codable {
     let lastBuildDate: String?
     let start: Int?
     let total: Int?
-    let items: [Movie]?
+    var items: [Movie] = []
     let display: Int?
 }
 

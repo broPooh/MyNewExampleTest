@@ -25,8 +25,8 @@ final class APIManager {
     
     func searchMovie(query: String, start: Int) -> Observable<MovieResult> {
         let compoenet = makeURLComponents(url: Endpoint.searchMovie.urlString, params: [
-            "query": query
-            //"start" : "\(start)"
+            "query": query,
+            "start" : "\(start)"
         ])!
         
         let request = makeURLRequestFromComponent(component: compoenet, headers: [
@@ -34,16 +34,6 @@ final class APIManager {
             NetworkHeader.clientSecret.rawValue : NetworkHeaderField.clientSecret.field,
         ])
                
-        
-//        return requestData(request)
-//            .map { response, data -> MovieResult in
-//                let decoder = JSONDecoder()
-//                let data = try decoder.decode(MovieResult.self, from: data)
-//                print("호출")
-//                print(data)
-//                return data
-//            }
-        
         return requestJSON(request)
             .map { $1 }
             .map { response -> MovieResult in

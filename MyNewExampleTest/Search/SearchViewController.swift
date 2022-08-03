@@ -41,20 +41,17 @@ class SearchViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        bindInput()
+        bind()
     }
     
     override func configure() {
         super.configure()
         
         navigationConfig()
-        searchBarConfig()
         tableViewConfig()
     }
     
     private func navigationConfig() {
-        //navigationItem.title = "네이버 영화 검색"
-        
         // 타이틀 지정
         let titleLabel = UILabel()
         titleLabel.textColor = UIColor.black
@@ -75,7 +72,6 @@ class SearchViewController: BaseViewController {
         button.setImage(UIImage(systemName: "star.fill"), for: .normal)
         button.tintColor = .yellow
         button.setTitle("즐겨찾기", for: .normal)
-        //button.titleLabel?.textColor = .black
         button.titleLabel?.font = .systemFont(ofSize: 12)
         button.setTitleColor(.black, for: .normal)
         button.frame = CGRect(x: 0, y: 0, width: 75, height: 30)
@@ -85,61 +81,47 @@ class SearchViewController: BaseViewController {
         return button
     }
     
-    private func searchBarConfig() {
-        searchView.searchBar.delegate = self
-    }
     
     private func tableViewConfig() {
         searchView.searchTableView.delegate = self
         searchView.searchTableView.dataSource = self
+        searchView.searchTableView.prefetchDataSource = self
     }
     
-    private func bindInput() {
+    private func bind() {
         let input = SearchViewModel.Input(searchText: searchView.searchBar.rx.text.orEmpty, searchBarReturn: searchView.searchBar.rx.searchButtonClicked)
         
         let output = viewModel.transform(input: input)
         
         output.searchInputText
-            .debounce(.seconds(1))
-            .do(onNext: { text in
-                if text != "" {
-                    self.viewModel.isLoading.accept(true)
-                    self.viewModel.searchMovie(query: text, start: 1)
-                }
-            })
-            .do(onNext: { _ in
-                self.viewModel.isLoading.accept(false)
-            })
-            .drive(onNext: { text in
+            .drive(onNext: { movieResult in
+                self.viewModel.movieResult.accept(movieResult)
+                self.viewModel.startPage.accept(movieResult.start ?? 1)
+                self.viewModel.totalCount.accept(movieResult.total ?? 1)
+                
                 self.searchView.searchTableView.reloadData()
             })
             .disposed(by: disposeBag)
+                    
                 
-        input.searchBarReturn
-                .bind {
-                    self.viewModel.searchMovie(query: self.searchView.searchBar.text!, start: 1)
-                }.disposed(by: disposeBag)
+        output.searchInputReturn
+            .drive(onNext: { movieResult in
+                self.viewModel.movieResult.accept(movieResult)
+                self.viewModel.startPage.accept(movieResult.start ?? 1)
+                self.viewModel.totalCount.accept(movieResult.total ?? 1)
+                
+                self.searchView.searchBar.resignFirstResponder()
+                self.searchView.searchTableView.reloadData()
+            })
+            .disposed(by: disposeBag)
         
-        output.movieResult
-                .asDriver()
-                .drive(onNext: { movieResult in
-                    print(movieResult)
-                    self.searchView.searchTableView.reloadData()
-                })
-                .disposed(by: disposeBag)
-        
+            
         output.isLoading
             .drive(onNext: { bool in
                 bool ? self.searchView.showProgress() : self.searchView.dissmissProgress()
             })
             .disposed(by: disposeBag)
-        
-        output.movieResultRx
-            .drive(onNext: { movieResult in
-                self.searchView.searchTableView.reloadData()
-            })
-            .disposed(by: disposeBag)
-    
+            
     }
     
     @objc func favoriteButtonDidTap() {
@@ -152,11 +134,13 @@ class SearchViewController: BaseViewController {
 // MARK: - TableViewDelegate
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.movieResult.value.items?.count ?? 0
+        //return viewModel.movieResult.value.items.count ?? 0
+        return viewModel.movieResult.value.items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let movie = viewModel.movieResult.value.items?[indexPath.row] ?? Movie(subtitle: "", image: "", title: "", actor: "", userRating: "", pubDate: "", director: "", link: "")
+//        let movie = viewModel.movieResult.value.items?[indexPath.row] ?? Movie(subtitle: "", image: "", title: "", actor: "", userRating: "", pubDate: "", director: "", link: "")
+        let movie = viewModel.movieResult.value.items[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.reuseIdentifier, for: indexPath) as! SearchTableViewCell
         
         cell.favoriteButtonAction = {
@@ -174,7 +158,35 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
 }
 
-// MARK: - SearchBarDelegate
-extension SearchViewController: UISearchBarDelegate {
+// MARK: - TableView Prefetcing
+extension SearchViewController: UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        
+        let itemCount = viewModel.movieResult.value.items.count
+        guard let totalCount = viewModel.movieResult.value.total else { return }
+        
+        for indexPath in indexPaths {
+            if itemCount - 1 == indexPath.row && itemCount < totalCount {
+                let start = viewModel.startPage.value + 1
+                APIManager.shared.searchMovie(query: viewModel.searchInputText.value, start: start)
+                    .subscribe(onNext: { movieResult in
+                        let addArray = movieResult.items
+                        let oldArray = self.viewModel.movieResult.value.items
+                        let newArray = oldArray + addArray
+                        
+                        var newMovieResult = movieResult
+                        newMovieResult.items = newArray
+                        
+                        self.viewModel.movieResult.accept(newMovieResult)
+                        self.viewModel.startPage.accept(movieResult.start ?? 1)
+                        self.viewModel.totalCount.accept(movieResult.total ?? 1)
+                        
+                        self.searchView.searchTableView.reloadData()
+                    })
+                    .disposed(by: disposeBag)
+            }
+        }
+    }
+    
     
 }
