@@ -25,8 +25,8 @@ class MainCoordinator: Coordinator, SearchViewControllerDelegate {
     
     func start() {
         let searchView = SearchView()
-        let searchViewModel = SearchViewModel()
-
+        let searchViewModel = SearchViewModel(databaesManager: RealmManager.shared)
+        
         let viewController = SearchViewController(view: searchView, viewModel: searchViewModel)
         viewController.delegate = self
         

@@ -26,7 +26,7 @@ class FavoriteCoordinator: Coordinator, FavoriteViewControllerDelegate {
     
     func start() {
         let favoriteView = FavoriteView()
-        let favoriteViewModel = FavoriteViewModel()
+        let favoriteViewModel = FavoriteViewModel(databaesManager: RealmManager.shared)
         let viewController = FavoriteViewController(view: favoriteView, viewModel: favoriteViewModel)
         
         viewController.delegate = self

@@ -86,7 +86,7 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteTableViewCell.reuseIdentifier, for: indexPath) as! FavoriteTableViewCell
         
         cell.favoriteButtonAction = {
-            self.viewModel.deleteMovieTest(movie: movie)
+            self.viewModel.deleteMovie(movie: movie)
                 .do(onNext: { _ in
                     self.favoriteView.favoriteTableView.reloadData()
                 })

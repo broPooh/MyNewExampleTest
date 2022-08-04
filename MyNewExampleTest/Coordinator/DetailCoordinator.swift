@@ -21,7 +21,7 @@ class DetailCoordinator: Coordinator {
     
     func start() {
         let detailView = DetailView()
-        let detailViewModel = DetailViewModel(movie: movie)
+        let detailViewModel = DetailViewModel(movie: movie, databaseManager: RealmManager.shared)
         let viewController = DetailViewController(view: detailView, viewModel: detailViewModel)
         navigationController.pushViewController(viewController, animated: true)
     }

@@ -9,8 +9,9 @@ import Foundation
 
 import RxCocoa
 import RxSwift
+import Action
 
-final class FavoriteViewModel: ViewModelType {
+final class FavoriteViewModel: CommonViewModel, ViewModelType {
     var disposeBag = DisposeBag()
     
     var movieList: BehaviorRelay<[MovieItem]> {
@@ -24,28 +25,32 @@ final class FavoriteViewModel: ViewModelType {
     
     struct Output {
         //즐겨찾기 영화리스트(DB)
+        let favoriteButtonResult: Observable<Void>
+    
     }
     
     func transform(input: Input) -> Output {
-        
-        return Output()
-    }
-    
-    func deleteMovie(movie: MovieItem) {
+        let favoriteButton = input.favoriteButtonTap
+            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
 
-        let favorite = RealmManager.shared.checkFavorite(title: movie.title, director: movie.director)
-        
-        if favorite {
-            RealmManager.shared.delete(movie: movie)
-        }
-        
+        return Output(favoriteButtonResult: favoriteButton)
     }
-    
-    func deleteMovieTest(movie: MovieItem) -> Observable<[MovieItem]> {
-        return RealmManager.shared.delete(movie: movie)
-            .flatMap { _ -> Observable<[MovieItem]> in
-                RealmManager.shared.movieList()
+        
+    func deleteMovie(movie: MovieItem) -> Observable<[MovieItem]> {
+        return Observable.just(())
+            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
+            .flatMap { _ in
+                return Observable.just(movie)
+            }.flatMap { movie in
+                self.databaesManager.delete(movie: movie)
+            }.flatMap { _ -> Observable<[MovieItem]> in
+                self.databaesManager.movieList()
             }
+        
+//        return databaesManager.delete(movie: movie)
+//            .flatMap { _ -> Observable<[MovieItem]> in
+//                self.databaesManager.movieList()
+//            }
     }
     
 }

@@ -10,7 +10,7 @@ import Foundation
 import RxCocoa
 import RxSwift
 
-final class SearchViewModel: ViewModelType {
+final class SearchViewModel: CommonViewModel, ViewModelType {
     var disposeBag = DisposeBag()
     
     let searchInputText: BehaviorRelay<String> = BehaviorRelay(value: "")
@@ -85,12 +85,6 @@ final class SearchViewModel: ViewModelType {
         
     }
     
-    func searchMovie(query: String, start: Int) {
-        APIManager.shared.searchMovie(query: query, start: start)
-            .bind(to: movieResult)
-            .disposed(by: disposeBag)
-    }
-    
     func fetchMovie(start: Int) -> Observable<Void> {
         return searchInputText
             .filter({ text in
@@ -119,12 +113,12 @@ final class SearchViewModel: ViewModelType {
             
     }
     
-    func checkFavoriteMovie(movie: Movie) -> Bool {        
+    func checkFavoriteMovie(movie: Movie) -> Bool {
         if movie.favorite! {
-            RealmManager.shared.delete(movie: movie)
+            databaesManager.delete(movie: MovieItem.convertMovie(movie: movie))
             return false
         } else {
-            RealmManager.shared.createMovie(movie: movie)
+            databaesManager.createMovie(movie: movie)
             return true
         }
         
