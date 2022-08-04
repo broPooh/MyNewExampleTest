@@ -32,26 +32,15 @@ final class DetailViewModel: ViewModelType {
     func transform(input: Input) -> Output {
         let isFavorite = input.favoriteButtonTap
             .flatMap { () -> Observable<Bool> in
-                return Observable.just(RealmManager.shared.checkFavorite(title: self.movie.title ?? "", director: self.movie.director ?? ""))
+                return Observable.just(RealmManager.shared.checkFavorite(title: self.movie.title?.htmlEscaped ?? "", director: self.movie.director?.htmlEscaped ?? ""))
             }.asDriver(onErrorJustReturn: false)
         
         return Output(isFavorite: isFavorite)
     }
     
     func checkFavoriteMovie(favorite: Bool) -> Bool{
-
-//        var check = favorite
-//        check.toggle()
         _ = favorite ? RealmManager.shared.delete(movie: movie) : RealmManager.shared.createMovie(movie: movie)
         return !favorite
-        
-//        if favorite {
-//            RealmManager.shared.delete(movie: movie)
-//        } else {
-//            RealmManager.shared.createMovie(movie: movie)
-//        }
-//        return favorite
-        
     }
     
 }
