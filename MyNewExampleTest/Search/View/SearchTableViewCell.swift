@@ -119,20 +119,22 @@ final class SearchTableViewCell: UITableViewCell, ViewRepresentable {
     }
     
     override func prepareForReuse() {
+        super.prepareForReuse()
         favoriteButton.setImage(nil, for: .normal)
-        changeButtonImage(favorite: movie.favorite ?? false)
+        let favorite = RealmManager.shared.checkFavorite(title: movie.title!, director: movie.director!)
+        changeButtonImage(favorite: favorite)
     }
     
-    func configureData(movie: Movie) {
+    func configureData() {
         posterImageView.setImage(imageUrl: movie.image ?? "ss")
         titleLable.text = movie.title?.htmlEscaped
         directorLable.text = "감독: \(movie.director ?? "")"
         castLable.text = "출연: \(movie.actor ?? "")"
         rateLable.text = "평점: \(movie.userRating ?? "")"
+        movie.favorite = RealmManager.shared.checkFavorite(title: movie.title?.htmlEscaped ?? "", director: movie.director ?? "")
+        //let favorite = RealmManager.shared.checkFavorite(title: movie.title!, pubDate: movie.pubDate!)
         
-        let favorite = RealmManager.shared.checkFavorite(title: movie.title ?? "", pubDate: movie.pubDate ?? "")
-        
-        changeButtonImage(favorite: favorite)
+        changeButtonImage(favorite: movie.favorite!)
     }
     
     func buttonConfig() {

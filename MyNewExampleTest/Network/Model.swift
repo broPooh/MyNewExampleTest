@@ -43,15 +43,17 @@ struct Movie: Codable {
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        subtitle = try values.decodeIfPresent(String.self, forKey: .subtitle)
+        subtitle = try values.decodeIfPresent(String.self, forKey: .subtitle)?.htmlEscaped
         image = try values.decodeIfPresent(String.self, forKey: .image)
-        title = try values.decodeIfPresent(String.self, forKey: .title)
+        title = try values.decodeIfPresent(String.self, forKey: .title)?.htmlEscaped
         actor = try values.decodeIfPresent(String.self, forKey: .actor)
         userRating = try values.decodeIfPresent(String.self, forKey: .userRating)
         pubDate = try values.decodeIfPresent(String.self, forKey: .pubDate)
         director = try values.decodeIfPresent(String.self, forKey: .director)
         link = try values.decodeIfPresent(String.self, forKey: .link)
-        favorite = (try? values.decode(Bool.self, forKey: .favorite)) ?? false
+        //favorite = (try? values.decode(Bool.self, forKey: .favorite)) ?? false
+        favorite = RealmManager.shared.checkFavorite(title: title ?? "", director: director ?? "")
+        
     }
     
     private enum CodingKeys: String, CodingKey {

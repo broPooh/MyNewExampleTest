@@ -41,7 +41,6 @@ final class APIManager {
                 let movieresult = try JSONDecoder().decode(MovieResult.self, from: data)
                 return movieresult
             }
-          
     }
     
     

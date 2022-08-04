@@ -44,7 +44,7 @@ final class FavoriteTableViewCell: UITableViewCell, ViewRepresentable {
         movieInfoView.castLable.text = "출연: \(movie.actor)"
         movieInfoView.rateLable.text = "평점: \(movie.userRating)"
         
-        let favorite = RealmManager.shared.checkFavorite(title: movie.title, pubDate: movie.pubDate)
+        let favorite = RealmManager.shared.checkFavorite(title: movie.title, director: movie.director)
         
         changeButtonImage(favorite: favorite)
     }

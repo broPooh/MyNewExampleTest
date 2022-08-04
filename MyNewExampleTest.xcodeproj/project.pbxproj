@@ -60,8 +60,6 @@
 		1BC5E235289B4687001E8BFA /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC5E234289B4687001E8BFA /* DatabaseError.swift */; };
 		1BD30E802893BC11002F9740 /* MovieInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD30E7F2893BC11002F9740 /* MovieInfoView.swift */; };
 		1BFA91F32899F88800AB1192 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 1BFA91F22899F88800AB1192 /* .gitignore */; };
-		1BFA91FD289A7E6B00AB1192 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFA91FC289A7E6B00AB1192 /* ViewController.swift */; };
-		1BFA91FF289A7EBE00AB1192 /* TransitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFA91FE289A7EBE00AB1192 /* TransitionModel.swift */; };
 		1BFA9201289A88E100AB1192 /* FavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFA9200289A88E100AB1192 /* FavoriteTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -112,8 +110,6 @@
 		1BD30E7F2893BC11002F9740 /* MovieInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfoView.swift; sourceTree = "<group>"; };
 		1BFA91F22899F88800AB1192 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		1BFA91FB289A4BE700AB1192 /* MYAPIConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = MYAPIConfig.xcconfig; sourceTree = "<group>"; };
-		1BFA91FC289A7E6B00AB1192 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		1BFA91FE289A7EBE00AB1192 /* TransitionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionModel.swift; sourceTree = "<group>"; };
 		1BFA9200289A88E100AB1192 /* FavoriteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -246,8 +242,6 @@
 				1B5D32A1288E7C520009E7FC /* MainCoordinator.swift */,
 				1B5D32DE2890058D0009E7FC /* FavoriteCoordinator.swift */,
 				1B5D32E128900C270009E7FC /* DetailCoordinator.swift */,
-				1BFA91FC289A7E6B00AB1192 /* ViewController.swift */,
-				1BFA91FE289A7EBE00AB1192 /* TransitionModel.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -435,7 +429,6 @@
 				1B5D32B9288F68F20009E7FC /* APIEnum.swift in Sources */,
 				1B5D3292288E631B0009E7FC /* UITableViewCell+Extension.swift in Sources */,
 				1B5D32A4288E8C530009E7FC /* SearchView.swift in Sources */,
-				1BFA91FD289A7E6B00AB1192 /* ViewController.swift in Sources */,
 				1B5D32A6288E8C680009E7FC /* BaseUIView.swift in Sources */,
 				1B5D32DA289004FF0009E7FC /* FavoriteViewModel.swift in Sources */,
 				1B5D32D1289003ED0009E7FC /* DetailView.swift in Sources */,
@@ -453,7 +446,6 @@
 				1BC5E235289B4687001E8BFA /* DatabaseError.swift in Sources */,
 				1B5D32B0288E8D650009E7FC /* ImageEnum.swift in Sources */,
 				1B5D32BD288F69A80009E7FC /* URL+Extension.swift in Sources */,
-				1BFA91FF289A7EBE00AB1192 /* TransitionModel.swift in Sources */,
 				1BD30E802893BC11002F9740 /* MovieInfoView.swift in Sources */,
 				1B5D328D288E62B20009E7FC /* Reusable.swift in Sources */,
 				1B5D32D6289004BA0009E7FC /* DetailViewController.swift in Sources */,

@@ -33,7 +33,7 @@ final class FavoriteViewModel: ViewModelType {
     
     func deleteMovie(movie: MovieItem) {
 
-       let favorite = RealmManager.shared.checkFavorite(title: movie.title, pubDate: movie.pubDate)
+        let favorite = RealmManager.shared.checkFavorite(title: movie.title, director: movie.director)
         
         if favorite {
             RealmManager.shared.delete(movie: movie)

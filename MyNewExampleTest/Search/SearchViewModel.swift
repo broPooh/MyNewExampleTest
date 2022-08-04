@@ -65,6 +65,9 @@ final class SearchViewModel: ViewModelType {
             .map({ () -> String in
                 return self.searchInputText.value
             })
+            .filter({ text in
+                return text != ""
+            })
             .do(onNext: { _ in
                 self.isLoading.accept(true)
             })
@@ -116,10 +119,8 @@ final class SearchViewModel: ViewModelType {
             
     }
     
-    func checkFavoriteMovie(movie: Movie) -> Bool {
-       let favorite = RealmManager.shared.checkFavorite(title: movie.title ?? "", pubDate: movie.pubDate ?? "")
-        
-        if favorite {
+    func checkFavoriteMovie(movie: Movie) -> Bool {        
+        if movie.favorite! {
             RealmManager.shared.delete(movie: movie)
             return false
         } else {

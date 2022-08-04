@@ -36,7 +36,7 @@ class MovieItem: Object {
     static func convertMovie(movie: Movie) -> MovieItem {
         let movieItem = MovieItem()
         movieItem.title = movie.title?.htmlEscaped ?? ""
-        movieItem.subtitle = movie.subtitle ?? ""
+        movieItem.subtitle = movie.subtitle?.htmlEscaped ?? ""
         movieItem.image = movie.image ?? ""
         movieItem.actor = movie.actor ?? ""
         movieItem.userRating = movie.userRating ?? ""

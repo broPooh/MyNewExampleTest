@@ -58,7 +58,7 @@ class DetailViewController: BaseViewController {
         
         output.isFavorite
             .drive(onNext: { favorite in
-                let check = self.viewModel.checkFavoriteMovie(movie: self.viewModel.movie)
+                let check = self.viewModel.checkFavoriteMovie(favorite: favorite)
                 self.changeButtonImage(favorite: check)
             })
             .disposed(by: disposeBag)
@@ -73,8 +73,8 @@ class DetailViewController: BaseViewController {
         movieInfoView.castLable.text = "출연: \(viewModel.movie.actor ?? "")"
         movieInfoView.rateLable.text = "평점: \(viewModel.movie.userRating ?? "")"
         
-        let favorite = RealmManager.shared.checkFavorite(title: viewModel.movie.title ?? "", pubDate: viewModel.movie.pubDate ?? "")
-
+        let favorite = RealmManager.shared.checkFavorite(title: viewModel.movie.title ?? "", director: viewModel.movie.director ?? "")
+        print(favorite)
         changeButtonImage(favorite: favorite)
     }
     
@@ -85,7 +85,6 @@ class DetailViewController: BaseViewController {
     
     func bindWeb() {
         guard let url = URL(string: viewModel.movie.link ?? "") else { print("Invalid URL"); return }
-        print(url)
         let request = URLRequest(url: url)
         detailView.webView.load(request)
     }

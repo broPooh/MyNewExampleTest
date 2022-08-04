@@ -51,13 +51,11 @@ class AppCoordinator: Coordinator, MainCoordinatorDelegate, FavoriteCoordinatorD
     }
     
     func favoriteCellDidTap(_ coordinator: FavoriteCoordinator, movie: Movie) {
-        print("눌렸니")
         self.childCoordinators = self.childCoordinators.filter { $0 !== coordinator }
         self.showDetailViewControllerFromFavorite(favorite: coordinator, movie: movie)
     }
     
     func showDetailViewControllerFromFavorite(favorite: FavoriteCoordinator, movie: Movie) {
-        print("눌렸니 check")
         let coordinator = DetailCoordinator(navigationController: favorite.favoriteNavigation!, movie: movie)
         coordinator.start()
         self.childCoordinators.append(coordinator)

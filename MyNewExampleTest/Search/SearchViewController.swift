@@ -143,12 +143,17 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         cell.movie = movie
         
         cell.favoriteButtonAction = { [unowned self] in
-            let favorite = self.viewModel.checkFavoriteMovie(movie: movie)
-            movie.favorite = favorite
+                        
+            let changeFavorite = self.viewModel.checkFavoriteMovie(movie: movie)
+            movie.favorite = changeFavorite
+            //let favorite = self.viewModel.checkFavoriteMovie(movie: movie)
+            //movie.favorite = favorite
+            
             cell.changeButtonImage(favorite: movie.favorite!)
         }
         
-        cell.configureData(movie: movie)
+        movie.favorite = RealmManager.shared.checkFavorite(title: movie.title?.htmlEscaped ?? "", director: movie.director ?? "")
+        cell.configureData()
         
         return cell
     }
@@ -159,6 +164,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let movie = viewModel.movieResult.value.items[indexPath.row]
+        //print(movie)
         delegate?.searchCellDidTap(movie: movie)
     }
     
