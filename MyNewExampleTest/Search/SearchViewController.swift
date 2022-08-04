@@ -44,6 +44,13 @@ class SearchViewController: BaseViewController {
         bind()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //즐겨찾기 화면에서 복귀시 화면 갱신을 위함.
+        //이거 말고 다른 방법이 맞는거 같은데..
+        searchView.searchTableView.reloadData()
+    }
+    
     override func configure() {
         super.configure()
         
@@ -151,8 +158,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             
             cell.changeButtonImage(favorite: movie.favorite!)
         }
-        
-        movie.favorite = RealmManager.shared.checkFavorite(title: movie.title?.htmlEscaped ?? "", director: movie.director ?? "")
         cell.configureData()
         
         return cell
@@ -164,7 +169,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let movie = viewModel.movieResult.value.items[indexPath.row]
-        //print(movie)
         delegate?.searchCellDidTap(movie: movie)
     }
     

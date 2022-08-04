@@ -22,6 +22,7 @@ class FavoriteViewController: BaseViewController {
     private var viewModel: FavoriteViewModel
     
     var disposeBag = DisposeBag()
+    var favoriteButtonAction: ( () -> () )?
     
     init(view: FavoriteView, viewModel: FavoriteViewModel) {
         self.favoriteView = view
@@ -104,12 +105,6 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let movie = viewModel.movieList.value[indexPath.row]
-        
-//        let detailView = DetailView()
-//        let detailViewModel = DetailViewModel(movie: MovieItem.convertMovieItem(movieItem: movie))
-//        let viewController = DetailViewController(view: detailView, viewModel: detailViewModel)
-//        self.navigationController?.pushViewController(viewController, animated: true)
-        
         
         delegate?.favoriteCellDidTap(movie: MovieItem.convertMovieItem(movieItem: movie))
     }

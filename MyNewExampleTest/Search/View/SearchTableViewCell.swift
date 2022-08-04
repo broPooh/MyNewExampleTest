@@ -118,12 +118,12 @@ final class SearchTableViewCell: UITableViewCell, ViewRepresentable {
         }
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        favoriteButton.setImage(nil, for: .normal)
-        let favorite = RealmManager.shared.checkFavorite(title: movie.title!, director: movie.director!)
-        changeButtonImage(favorite: favorite)
-    }
+//    override func prepareForReuse() {
+//        super.prepareForReuse()
+//        favoriteButton.setImage(nil, for: .normal)
+//        let favorite = RealmManager.shared.checkFavorite(title: movie.title!, director: movie.director!)
+//        changeButtonImage(favorite: favorite)
+//    }
     
     func configureData() {
         posterImageView.setImage(imageUrl: movie.image ?? "ss")
@@ -132,7 +132,6 @@ final class SearchTableViewCell: UITableViewCell, ViewRepresentable {
         castLable.text = "출연: \(movie.actor ?? "")"
         rateLable.text = "평점: \(movie.userRating ?? "")"
         movie.favorite = RealmManager.shared.checkFavorite(title: movie.title?.htmlEscaped ?? "", director: movie.director ?? "")
-        //let favorite = RealmManager.shared.checkFavorite(title: movie.title!, pubDate: movie.pubDate!)
         
         changeButtonImage(favorite: movie.favorite!)
     }
