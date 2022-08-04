@@ -120,4 +120,18 @@ final class SearchViewModel: ViewModelType {
             
     }
     
+    func checkFavoriteMovie(movie: Movie) -> Bool {
+        
+       let favorite = RealmManager.shared.checkFavorite(title: movie.title ?? "", pubDate: movie.pubDate ?? "")
+        
+        if favorite {
+            RealmManager.shared.delete(movie: movie)
+            return false
+        } else {
+            RealmManager.shared.createMovie(movie: movie)
+            return true
+        }
+        
+    }
+    
 }

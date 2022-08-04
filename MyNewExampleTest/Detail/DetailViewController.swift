@@ -36,6 +36,7 @@ class DetailViewController: BaseViewController {
         super.viewDidLoad()
                 
         navigationConfig()
+        bindInoutPut()
         bindMovieData()
         bindWeb()
     }
@@ -50,9 +51,20 @@ class DetailViewController: BaseViewController {
         self.navigationController?.navigationBar.topItem?.title = ""
     }
     
+    func bindInoutPut() {
+        let input = DetailViewModel.Input(favoriteButtonTap: detailView.movieInfoView.favoriteButton.rx.tap)
+        
+        let output = viewModel.transform(input: input)
+        
+        output.isFavorite
+            .drive(onNext: { favorite in
+                let check = self.viewModel.checkFavoriteMovie(movie: self.viewModel.movie)
+                self.changeButtonImage(favorite: check)
+            })
+            .disposed(by: disposeBag)
+    }
+    
     func bindMovieData() {
-        
-        
         let movieInfoView = detailView.movieInfoView
 
         movieInfoView.posterImageView.setImage(imageUrl: viewModel.movie.image ?? "")
@@ -61,7 +73,9 @@ class DetailViewController: BaseViewController {
         movieInfoView.castLable.text = "출연: \(viewModel.movie.actor ?? "")"
         movieInfoView.rateLable.text = "평점: \(viewModel.movie.userRating ?? "")"
         
-        changeButtonImage(favorite: viewModel.movie.favorite!)
+        let favorite = RealmManager.shared.checkFavorite(title: viewModel.movie.title ?? "", pubDate: viewModel.movie.pubDate ?? "")
+
+        changeButtonImage(favorite: favorite)
     }
     
     func changeButtonImage(favorite: Bool) {

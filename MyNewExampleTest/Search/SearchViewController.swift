@@ -125,8 +125,6 @@ class SearchViewController: BaseViewController {
     }
     
     @objc func favoriteButtonDidTap() {
-        print(#function)
-        print(delegate)
         delegate?.favoriteButtonDidTap()
     }
     
@@ -142,8 +140,11 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         var movie = viewModel.movieResult.value.items[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.reuseIdentifier, for: indexPath) as! SearchTableViewCell
         
-        cell.favoriteButtonAction = {
-            movie.favorite?.toggle()
+        cell.movie = movie
+        
+        cell.favoriteButtonAction = { [unowned self] in
+            let favorite = self.viewModel.checkFavoriteMovie(movie: movie)
+            movie.favorite = favorite
             cell.changeButtonImage(favorite: movie.favorite!)
         }
         

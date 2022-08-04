@@ -16,7 +16,6 @@ final class DetailView: BaseUIView {
     
     var webView: WKWebView = {
        let webView = WKWebView()
-        webView.backgroundColor = .yellow
         return webView
     }()
     

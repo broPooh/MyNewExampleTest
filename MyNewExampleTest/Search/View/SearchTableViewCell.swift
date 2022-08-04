@@ -12,6 +12,7 @@ import SnapKit
 final class SearchTableViewCell: UITableViewCell, ViewRepresentable {
     
     var favoriteButtonAction: ( () -> () )?
+    var movie: Movie!
     
     let posterImageView: UIImageView = {
         let posterImageView = UIImageView()
@@ -117,6 +118,11 @@ final class SearchTableViewCell: UITableViewCell, ViewRepresentable {
         }
     }
     
+    override func prepareForReuse() {
+        favoriteButton.setImage(nil, for: .normal)
+        changeButtonImage(favorite: movie.favorite ?? false)
+    }
+    
     func configureData(movie: Movie) {
         posterImageView.setImage(imageUrl: movie.image ?? "ss")
         titleLable.text = movie.title?.htmlEscaped
@@ -124,7 +130,9 @@ final class SearchTableViewCell: UITableViewCell, ViewRepresentable {
         castLable.text = "출연: \(movie.actor ?? "")"
         rateLable.text = "평점: \(movie.userRating ?? "")"
         
-        changeButtonImage(favorite: movie.favorite!)
+        let favorite = RealmManager.shared.checkFavorite(title: movie.title ?? "", pubDate: movie.pubDate ?? "")
+        
+        changeButtonImage(favorite: favorite)
     }
     
     func buttonConfig() {
@@ -133,6 +141,7 @@ final class SearchTableViewCell: UITableViewCell, ViewRepresentable {
     
     func changeButtonImage(favorite: Bool) {
         let color: UIColor = favorite ? .yellow : .lightGray
+        favoriteButton.setImage(UIImage(systemName: SystemImage.starFill.rawValue), for: .normal)
         favoriteButton.tintColor = color
     }
     

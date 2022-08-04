@@ -46,7 +46,7 @@ final class MovieInfoView: BaseUIView {
     
     let favoriteButton: UIButton = {
         let favoriteButton = UIButton()
-        favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
+        favoriteButton.setImage(UIImage(systemName: SystemImage.starFill.rawValue), for: .normal)
         favoriteButton.tintColor = .lightGray
         return favoriteButton
     }()

@@ -78,6 +78,26 @@ class RealmManager: DataBaseManagerType {
         }
     }
     
+    @discardableResult
+    func delete(movie: Movie) -> Observable<MovieItem> {
+        let localRealm = try! Realm()
+        do {
+            if let deleteItem = localRealm.objects(MovieItem.self).where({
+                $0.title == movie.title ?? "" || $0.pubDate == movie.pubDate ?? ""
+            }).first {
+                try localRealm.write {
+                        localRealm.delete(deleteItem)
+                }
+                return Observable.just(deleteItem)
+            } else {
+                return Observable.error(DatabaseError.deleteFail)
+            }
+        } catch {
+            print("Error Delete : \(error)")
+            return Observable.error(error)
+        }
+    }
+    
     func checkFavorite(title: String, pubDate: String) -> Bool {
         let localRealm = try! Realm()
         
