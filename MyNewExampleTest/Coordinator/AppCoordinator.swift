@@ -7,7 +7,8 @@
 
 import UIKit
 
-class AppCoordinator: Coordinator, MainCoordinatorDelegate {
+class AppCoordinator: Coordinator, MainCoordinatorDelegate, FavoriteCoordinatorDelegate {
+       
         
     var navigationController: UINavigationController
     
@@ -30,6 +31,7 @@ class AppCoordinator: Coordinator, MainCoordinatorDelegate {
     
     private func showFavoriteViewController() {
         let coordinator = FavoriteCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
         coordinator.start()
     }
     
@@ -46,6 +48,19 @@ class AppCoordinator: Coordinator, MainCoordinatorDelegate {
     func searchCellDidTap(_ coordinator: MainCoordinator, movie: Movie) {
         self.childCoordinators = self.childCoordinators.filter { $0 !== coordinator }
         self.showDetailViewController(movie: movie)
+    }
+    
+    func favoriteCellDidTap(_ coordinator: FavoriteCoordinator, movie: Movie) {
+        print("눌렸니")
+        self.childCoordinators = self.childCoordinators.filter { $0 !== coordinator }
+        self.showDetailViewControllerFromFavorite(favorite: coordinator, movie: movie)
+    }
+    
+    func showDetailViewControllerFromFavorite(favorite: FavoriteCoordinator, movie: Movie) {
+        print("눌렸니 check")
+        let coordinator = DetailCoordinator(navigationController: favorite.favoriteNavigation!, movie: movie)
+        coordinator.start()
+        self.childCoordinators.append(coordinator)
     }
     
 }

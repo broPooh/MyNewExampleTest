@@ -12,7 +12,7 @@ import RxSwift
 import SnapKit
 
 protocol FavoriteViewControllerDelegate {
-    func favoriteCellDidTap()
+    func favoriteCellDidTap(movie: Movie)
 }
 
 class FavoriteViewController: BaseViewController {
@@ -68,7 +68,6 @@ class FavoriteViewController: BaseViewController {
     }
     
     @objc func dissmissButtonDidTap() {
-        print(#function)
         dismiss(animated: true)
     }
     
@@ -78,16 +77,20 @@ class FavoriteViewController: BaseViewController {
 extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return viewModel.movieList.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var movie = Movie(subtitle: "", image: "", title: "", actor: "", userRating: "", pubDate: "", director: "", link: "")
+        let movie = viewModel.movieList.value[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteTableViewCell.reuseIdentifier, for: indexPath) as! FavoriteTableViewCell
         
         cell.favoriteButtonAction = {
-            movie.favorite?.toggle()
-            cell.changeButtonImage(favorite: movie.favorite!)
+            self.viewModel.deleteMovieTest(movie: movie)
+                .do(onNext: { _ in
+                    self.favoriteView.favoriteTableView.reloadData()
+                })
+                .bind(to: self.viewModel.movieList)
+                .disposed(by: self.disposeBag)
         }
         
         cell.configureData(movie: movie)
@@ -97,6 +100,18 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let movie = viewModel.movieList.value[indexPath.row]
+        
+//        let detailView = DetailView()
+//        let detailViewModel = DetailViewModel(movie: MovieItem.convertMovieItem(movieItem: movie))
+//        let viewController = DetailViewController(view: detailView, viewModel: detailViewModel)
+//        self.navigationController?.pushViewController(viewController, animated: true)
+        
+        
+        delegate?.favoriteCellDidTap(movie: MovieItem.convertMovieItem(movieItem: movie))
     }
 }
 

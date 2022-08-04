@@ -9,6 +9,7 @@ import Foundation
 
 import RealmSwift
 import RxSwift
+import RxCocoa
 
 
 class RealmManager: DataBaseManagerType {
@@ -44,6 +45,17 @@ class RealmManager: DataBaseManagerType {
             array.append(movieItem)
         }
         return Observable.just(array)
+    }
+    
+    @discardableResult
+    func movieList() -> BehaviorRelay<[MovieItem]> {
+        let localRealm = try! Realm()
+        let results = localRealm.objects(MovieItem.self)
+        var array: [MovieItem] = []
+        results.forEach { movieItem in
+            array.append(movieItem)
+        }
+        return BehaviorRelay<[MovieItem]>(value: array)
     }
     
     @discardableResult

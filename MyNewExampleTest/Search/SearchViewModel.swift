@@ -19,14 +19,7 @@ final class SearchViewModel: ViewModelType {
     let startPage: BehaviorRelay<Int> = BehaviorRelay(value: 1)
     let totalCount: BehaviorRelay<Int> = BehaviorRelay(value: 1)
     
-    var movieResult: BehaviorRelay<MovieResult> = BehaviorRelay(value: MovieResult(lastBuildDate: "", start: 1, total: 1, items: [
-        Movie(subtitle: "test", image: "https://search.pstatic.net/common?type=o&size=174x246&quality=100&direct=true&src=https%3A%2F%2Fs.pstatic.net%2Fmovie.phinf%2F20220708_75%2F16572722362230AyHS_JPEG%2Fmovie_image.jpg%3Ftype%3Dw640_2", title: "title", actor: "actor", userRating: "5.0", pubDate: "2020.20.20", director: "director", link: "https://apple.com"),
-        Movie(subtitle: "test", image: "https://search.pstatic.net/common?type=o&size=174x246&quality=100&direct=true&src=https%3A%2F%2Fs.pstatic.net%2Fmovie.phinf%2F20220708_75%2F16572722362230AyHS_JPEG%2Fmovie_image.jpg%3Ftype%3Dw640_2", title: "title", actor: "actor", userRating: "5.0", pubDate: "2020.20.20", director: "director", link: "https://movie.naver.com/movie/bi/mi/basic.nhn?code=187347"),
-        Movie(subtitle: "test", image: "https://search.pstatic.net/common?type=o&size=174x246&quality=100&direct=true&src=https%3A%2F%2Fs.pstatic.net%2Fmovie.phinf%2F20220708_75%2F16572722362230AyHS_JPEG%2Fmovie_image.jpg%3Ftype%3Dw640_2", title: "title", actor: "actor", userRating: "5.0", pubDate: "2020.20.20", director: "director", link: "https://movie.naver.com/movie/bi/mi/basic.nhn?code=187347"),
-        Movie(subtitle: "test", image: "https://search.pstatic.net/common?type=o&size=174x246&quality=100&direct=true&src=https%3A%2F%2Fs.pstatic.net%2Fmovie.phinf%2F20220708_75%2F16572722362230AyHS_JPEG%2Fmovie_image.jpg%3Ftype%3Dw640_2", title: "title", actor: "actor", userRating: "5.0", pubDate: "2020.20.20", director: "director", link: "https://movie.naver.com/movie/bi/mi/basic.nhn?code=187347"),
-        Movie(subtitle: "test", image: "https://search.pstatic.net/common?type=o&size=174x246&quality=100&direct=true&src=https%3A%2F%2Fs.pstatic.net%2Fmovie.phinf%2F20220708_75%2F16572722362230AyHS_JPEG%2Fmovie_image.jpg%3Ftype%3Dw640_2", title: "title", actor: "actor", userRating: "5.0", pubDate: "2020.20.20", director: "director", link: "https://movie.naver.com/movie/bi/mi/basic.nhn?code=187347"),
-        Movie(subtitle: "test", image: "https://search.pstatic.net/common?type=o&size=174x246&quality=100&direct=true&src=https%3A%2F%2Fs.pstatic.net%2Fmovie.phinf%2F20220708_75%2F16572722362230AyHS_JPEG%2Fmovie_image.jpg%3Ftype%3Dw640_2", title: "title", actor: "actor", userRating: "5.0", pubDate: "2020.20.20", director: "director", link: "link"),
-    ], display: 1))
+    var movieResult: BehaviorRelay<MovieResult> = BehaviorRelay(value: MovieResult(lastBuildDate: "", start: 1, total: 1, items: [], display: 1))
 
     let isLoading = BehaviorRelay<Bool>(value: false)
     
@@ -97,6 +90,9 @@ final class SearchViewModel: ViewModelType {
     
     func fetchMovie(start: Int) -> Observable<Void> {
         return searchInputText
+            .filter({ text in
+                return text != ""
+            })
             .do(onNext: { _ in
                 self.isLoading.accept(true)
             })
@@ -121,7 +117,6 @@ final class SearchViewModel: ViewModelType {
     }
     
     func checkFavoriteMovie(movie: Movie) -> Bool {
-        
        let favorite = RealmManager.shared.checkFavorite(title: movie.title ?? "", pubDate: movie.pubDate ?? "")
         
         if favorite {

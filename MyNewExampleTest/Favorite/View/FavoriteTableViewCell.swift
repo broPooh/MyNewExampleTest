@@ -37,14 +37,16 @@ final class FavoriteTableViewCell: UITableViewCell, ViewRepresentable {
         }
     }
     
-    func configureData(movie: Movie) {
-        movieInfoView.posterImageView.setImage(imageUrl: movie.image ?? "ss")
-        movieInfoView.titleLable.text = movie.title?.htmlEscaped
-        movieInfoView.directorLable.text = "감독: \(movie.director ?? "")"
-        movieInfoView.castLable.text = "출연: \(movie.actor ?? "")"
-        movieInfoView.rateLable.text = "평점: \(movie.userRating ?? "")"
+    func configureData(movie: MovieItem) {
+        movieInfoView.posterImageView.setImage(imageUrl: movie.image)
+        movieInfoView.titleLable.text = movie.title.htmlEscaped
+        movieInfoView.directorLable.text = "감독: \(movie.director)"
+        movieInfoView.castLable.text = "출연: \(movie.actor)"
+        movieInfoView.rateLable.text = "평점: \(movie.userRating)"
         
-        changeButtonImage(favorite: movie.favorite!)
+        let favorite = RealmManager.shared.checkFavorite(title: movie.title, pubDate: movie.pubDate)
+        
+        changeButtonImage(favorite: favorite)
     }
     
     func buttonConfig() {
@@ -53,6 +55,7 @@ final class FavoriteTableViewCell: UITableViewCell, ViewRepresentable {
     
     func changeButtonImage(favorite: Bool) {
         let color: UIColor = favorite ? .yellow : .lightGray
+        movieInfoView.favoriteButton.setImage(UIImage(systemName: SystemImage.starFill.rawValue), for: .normal)
         movieInfoView.favoriteButton.tintColor = color
     }
     

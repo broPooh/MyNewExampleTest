@@ -45,7 +45,7 @@ class DetailViewController: BaseViewController {
         // 타이틀 지정
         let titleLabel = UILabel()
         titleLabel.textColor = UIColor.black
-        titleLabel.text = viewModel.movie.title ?? ""
+        titleLabel.text = viewModel.movie.title?.htmlEscaped
         titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         self.navigationItem.titleView = titleLabel
         self.navigationController?.navigationBar.topItem?.title = ""

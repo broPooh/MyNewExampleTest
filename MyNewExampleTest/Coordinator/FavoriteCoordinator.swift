@@ -8,7 +8,7 @@
 import UIKit
 
 protocol FavoriteCoordinatorDelegate {
-    func favoriteCellDidTap(_ coordinator: FavoriteCoordinator)
+    func favoriteCellDidTap(_ coordinator: FavoriteCoordinator, movie: Movie)
 }
 
 class FavoriteCoordinator: Coordinator, FavoriteViewControllerDelegate {
@@ -17,6 +17,7 @@ class FavoriteCoordinator: Coordinator, FavoriteViewControllerDelegate {
     var childCoordinators: [Coordinator] = []
     
     var delegate: FavoriteCoordinatorDelegate?
+    var favoriteNavigation: UINavigationController?
     
 
     init(navigationController: UINavigationController) {
@@ -28,14 +29,16 @@ class FavoriteCoordinator: Coordinator, FavoriteViewControllerDelegate {
         let favoriteViewModel = FavoriteViewModel()
         let viewController = FavoriteViewController(view: favoriteView, viewModel: favoriteViewModel)
         
-        let nav = UINavigationController(rootViewController: viewController)
-        nav.modalPresentationStyle = .fullScreen
+        viewController.delegate = self
+        
+        favoriteNavigation = UINavigationController(rootViewController: viewController)
+        favoriteNavigation!.modalPresentationStyle = .fullScreen
         //현재의 화면 뷰컨트롤러에서 화면전환을 요청해야함..!!
-        navigationController.present(nav, animated: true, completion: nil)
+        navigationController.present(favoriteNavigation!, animated: true, completion: nil)
     }
     
-    func favoriteCellDidTap() {
-        delegate?.favoriteCellDidTap(self)
+    func favoriteCellDidTap(movie: Movie) {
+        delegate?.favoriteCellDidTap(self, movie: movie)
     }
     
 }
