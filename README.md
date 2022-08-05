@@ -1,13 +1,13 @@
 # MyNewExampleTest
 
-##하고자 했던 것
+#하고자 했던 것
 1. mvvm + rx + input, output 적용 -> 잘 되지 않아서 input,output없이 구현
 2. coordinator 패턴적용 -> 흐름이 눈에 잘 안들어와서, 내가 코드를 이상하게 짜고있음. 개선필요
 3. DI적용 
 4. RxAlamofire로 Error 핸들링 처리 -> Drive를 사용하여 error를 못받는 상황 -> 검색해보고 적용예정
 
 
-##궁금한 사항
+#궁금한 사항
 1. network 모델 관련 질문
 2. Webview ATS관련 질문
 3. tableviwe cell내 버튼 클릭 rx로 처리.?
