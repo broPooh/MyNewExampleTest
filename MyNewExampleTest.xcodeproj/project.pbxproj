@@ -275,9 +275,7 @@
 				1BD30E7E2893BBFA002F9740 /* CustomView */,
 				1BB44E75288E5CE20096FA4A /* AppDelegate.swift */,
 				1BB44E77288E5CE20096FA4A /* SceneDelegate.swift */,
-				1B5D32E32890230C0009E7FC /* RealmModel.swift */,
-				1BC5E230289AA42F001E8BFA /* DataBaseManagerType.swift */,
-				1BC5E232289AA526001E8BFA /* RealmManager.swift */,
+				1BDC9B15289D02F10014D432 /* Database */,
 				1B5D32DD2890051D0009E7FC /* Favorite */,
 				1B5D32D42890048A0009E7FC /* Detail */,
 				1B5D32C1288F6B620009E7FC /* Common */,
@@ -310,6 +308,16 @@
 				1BD30E7F2893BC11002F9740 /* MovieInfoView.swift */,
 			);
 			path = CustomView;
+			sourceTree = "<group>";
+		};
+		1BDC9B15289D02F10014D432 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				1B5D32E32890230C0009E7FC /* RealmModel.swift */,
+				1BC5E230289AA42F001E8BFA /* DataBaseManagerType.swift */,
+				1BC5E232289AA526001E8BFA /* RealmManager.swift */,
+			);
+			path = Database;
 			sourceTree = "<group>";
 		};
 		1BFA9202289A890000AB1192 /* View */ = {

@@ -41,7 +41,7 @@ final class DetailViewModel: CommonViewModel, ViewModelType {
     }
     
     func checkFavoriteMovie(favorite: Bool) -> Bool{
-        _ = favorite ? RealmManager.shared.delete(movie: movie) : databaesManager.createMovie(movie: movie)
+        _ = favorite ? databaesManager.delete(movie: MovieItem.convertMovie(movie: movie)) : databaesManager.createMovie(movie: movie)
         return !favorite
     }
     

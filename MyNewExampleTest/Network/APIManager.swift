@@ -34,7 +34,8 @@ final class APIManager {
             NetworkHeader.clientSecret.rawValue : NetworkHeaderField.clientSecret.field,
         ])
                
-        return requestJSON(request)
+        return RxAlamofire
+            .requestJSON(request)
             .map { $1 }
             .map { response -> MovieResult in
                 let data = try JSONSerialization.data(withJSONObject: response, options: .prettyPrinted)

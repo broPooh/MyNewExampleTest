@@ -113,7 +113,7 @@ class RealmManager: DataBaseManagerType {
     func checkFavorite(title: String, director: String) -> Bool {
         let localRealm = try! Realm()
         let checkItem = localRealm.objects(MovieItem.self).where({
-            $0.title == title || $0.director == director
+            $0.title == title && $0.director == director
         }).first
         return checkItem != nil ? true : false
     }

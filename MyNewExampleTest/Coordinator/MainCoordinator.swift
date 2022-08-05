@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 protocol MainCoordinatorDelegate {
     func favoriteDidTap(_ coordinator: MainCoordinator)
