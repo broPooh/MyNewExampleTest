@@ -73,8 +73,7 @@ class DetailViewController: BaseViewController {
         movieInfoView.castLable.text = "출연: \(viewModel.movie.actor ?? "")"
         movieInfoView.rateLable.text = "평점: \(viewModel.movie.userRating ?? "")"
         
-        let favorite = RealmManager.shared.checkFavorite(title: viewModel.movie.title ?? "", director: viewModel.movie.director ?? "")
-        print(favorite)
+        let favorite = viewModel.databaesManager.checkFavorite(title: viewModel.movie.title ?? "", director: viewModel.movie.director ?? "")
         changeButtonImage(favorite: favorite)
     }
     

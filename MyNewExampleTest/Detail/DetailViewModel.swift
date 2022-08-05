@@ -44,5 +44,4 @@ final class DetailViewModel: CommonViewModel, ViewModelType {
         _ = favorite ? databaesManager.delete(movie: MovieItem.convertMovie(movie: movie)) : databaesManager.createMovie(movie: movie)
         return !favorite
     }
-    
 }
